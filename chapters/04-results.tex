@@ -1,0 +1,407 @@
+\chapter{Results}\label{chp:results}
+
+In this chapter, we present the results of different networks. Every section from \ref{sec:res} to \ref{sec:gogl} presents the results for each network. every section is divided in three subsection: one in which we discuss the results of different initialization one where we discuss the results of different optimizers and one in which the results for different classes are presented. 
+\section{Resnet}\label{sec:res}
+\subsection{Initialization}
+For every class, we tested our network with either random initialization or with using pretrained weights. In Table \ref{tab:resinit}, we can see the best accuracy on validation set and the number of epochs for training for each class.  
+
+\begin{table}
+\caption{\label{tab:resinit} The results of training ResNet18 using random initialization or pretrained weights with Adamax as optimizer}
+\centering
+\begin{tabular}[b]{| l | l | l | l | l |}
+\hline
+    Initialization & Class & Validation accuracy (F1-score) & Epochs\ \\ \hline
+    \multirow{4}{*}{Pretrained Weights} & Dunham &  62\%  & 50 \\ 
+    & Porosity & 74\%  &  60 \\
+    &DRT & 55\% &  50 \\
+    &Components & 70\% &  50 \\ \hline
+     \multirow{4}{*}{Random} & Dunham &  45\%  & 50 \\
+    & Porosity & 64\% &  50 \\
+    &DRT & 28\% & 50 \\
+    &Components & 34\% &  50 \\ \hline
+    
+\end{tabular} 
+\end{table}
+On Figure\ref{fig:plotsres}, we plotted the accuracy, F1 score, and average training and validation loss for each class. 
+
+
+
+\begin{figure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{figures/04-Init_poro_acc.PNG}
+  \caption{Resnet18 trained on the Porosity class.}
+  \label{fig:resinit_poro}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{figures/04-Init_dunham_acc.PNG}
+  \caption{Resnet18 trained on the Dunham class.}
+  \label{fig:resinit_dunham}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{figures/04-Init_drt_acc.PNG}
+  \caption{Resnet18 trained on the DRT class.}
+  \label{fig:resinit_drt}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{figures/04-Init_components_acc.PNG}
+  \caption{Resnet18 trained on the Components class.}
+  \label{fig:resinit_compo}
+\end{subfigure}
+\caption[Training and validation plots for Resnet 18]{The lines in green and red are for pretrained weights and yellow and blue for random initialization. The top plot is the validation accuracy for plots (a) (b) and (c) and the F1-score for plot (d), and the bottom plot is training  and validation loss.}
+\label{fig:plotsres}
+\end{figure}
+\subsection{Classification}
+On Table\ref{tab:resbest}, we summarize the best validation and test accuracy or F-1 score for every class. Then we present the confusion matrix for the best performing model and the test data set for the single label classification on Figure\ref{fig:rescm}. For the Components class, we show the statistics for every class. 
+
+\begin{table}
+\caption{\label{tab:resbest} The results of the best version of the Resnet 18 on the classification task. The validation and test accuracy are used as score on the single label classification while F1-scores are used for multi-label classification.}
+\centering
+\begin{tabular}[b]{| l | l | l | l | l |}
+\hline
+    Initialization & Class & Validation score & Test score \ \\ \hline
+    Pretrained Weights & Dunham &  62\%  & 38\% \\ \hline
+    Pretrained Weights & Porosity & 74\%  &  58\% \\ \hline
+    Pretrained Weights &DRT & 56\% &  25\% \\ \hline
+    Pretrained Weights &Components & 69\% &  45\% \\ \hline
+\end{tabular} 
+\end{table}
+
+\begin{figure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{figures/04-baby_best.PNG}
+  \caption{Best for Porosity}
+  \label{fig:rescm_poro}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{figures/04-baby_pred.PNG}
+  \caption{Predicted for Porosity}
+  \label{fig:rescmpred_poro}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{figures/04-dunham_best.PNG}
+  \caption{Best for Dunham}
+  \label{fig:rescm_dunham}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{figures/04-dunham_pred.PNG}
+  \caption{Predicted for Dunham}
+  \label{fig:rescmpred_dunham}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{figures/04-DRT_best.PNG}
+  \caption{Best for DRT}
+  \label{fig:rescm_drt}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{figures/04-drt_predicted.PNG}
+  \caption{Predicted for DRT}
+  \label{fig:rescmpred_drt}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{figures/04-compo_best.PNG}
+  \caption{Best for Components}
+  \label{fig:rescompo_best}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{figures/04-compo_pred.PNG}
+  \caption{Predicted for Components}
+  \label{fig:rescompo_pred}
+\end{subfigure}
+\caption[Confusion matrices of classes trained on Resnet 18]{On the left is the confusion matrix of the best performing ResNet18 and on the right is the confusion matrix on the test set. The last row are the summaries of the performance for the multi-label classification. It shows precision, recall f1-score and also the number of samples for each class.}
+\label{fig:rescm}
+\end{figure}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   ALEX   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{AlexNet}\label{sec:aleX}
+\subsection{Initialization}
+For every class, we tested our network with either random initialization or with using pretrained weights. In Table \ref{tab:alexinit}, we can see the best accuracy on validation and test set, the number of epochs for training for each class.  
+On Figure\ref{fig:plotsalex}, we plotted the accuracy, F1 score, and average training and validation loss for each class. 
+\begin{table}
+\caption{\label{tab:alexinit} The results of training AlexNet using random initialization or pretrained weights with Adamax as optimizer}
+\centering
+\begin{tabular}[b]{| l | l | l | l | l |}
+\hline
+    Initialization & Class & Validation accuracy  & Epochs\\ \hline
+    \multirow{4}{*}{Pretrained Weights} & Dunham &  82\%  & 50 \\ %%cf Confusion Matrix 
+    & Porosity & 89\% &  50 \\
+    &DRT & 66\% &  50 \\
+    &Components & 75\% &  50 \\ \hline
+     \multirow{4}{*}{Random} & Dunham &  62\% & 50 \\
+    & Porosity & 65\% &  50 \\
+    &DRT & 61\% &  50 \\
+    &Components & 75\% & 50 \\ \hline
+\end{tabular} 
+\end{table}
+
+\begin{figure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{figures/04-Init_al_poro_acc.PNG}
+  \caption{AlexNet trained on the Porosity class.}
+  \label{fig:alexinit_poro}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{figures/04-Init_al_dunham_acc.PNG}
+  \caption{AlexNet trained on the Dunham class.}
+  \label{fig:alexinit_dunham}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{figures/04-Init_al_drt_acc.PNG}
+  \caption{AlexNet trained on the DRT class.}
+  \label{fig:alexinit_drt}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{figures/04-al_components_acc.PNG}
+  \caption{AlexNet trained on the Components class.}
+  \label{fig:alexinit_compo}
+\end{subfigure}
+\caption[Training and validation plots for AlexNet]{The lines in green and red are for pretrained weights and yellow and blue for random initialization. The top plot is the validation accuracy for plots (a) (b) and (c) and the F1-score for plot (d), and the bottom plot is training  and validation loss.}
+\label{fig:plotsalex}
+\end{figure}
+
+\subsection{Classification}
+On Table\ref{tab:alexbest}, we summarize the best validation and test accuracy or F-1 score for every class. Then we present the confusion matrix for the best performing model and the test data set for the single label classification on Figure\ref{fig:alexcm}. For the Components class, we show the statistics for every class. 
+
+\begin{table}
+\caption{\label{tab:alexbest} The results of the best version of the AlexNet on the classification task. The validation and test accuracy are used as score on the single label classification while F1-scores are used for multi-label classification.}
+\centering
+\begin{tabular}[b]{| l | l | l | l | l |}
+\hline
+    Initialization & Class & Validation score & Test score  \\ \hline
+    Pretrained Weights & Dunham &  82\%  & 39\% \\ \hline
+    Pretrained Weights & Porosity & 89\%  &  69\% \\ \hline
+    Pretrained Weights &DRT & 75\% &  25\% \\ \hline
+    Pretrained Weights &Components & 85\% &  50\% \\ \hline
+\end{tabular} 
+\end{table}
+
+\begin{figure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{figures/04-al_baby_best.PNG}
+  \caption{Best for Porosity}
+  \label{fig:alcm_poro}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{figures/04-al_baby_pred.PNG}
+  \caption{Predicted for Porosity}
+  \label{fig:alcmpred_poro}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{figures/04-al_dunham_best.PNG}
+  \caption{Best for Dunham}
+  \label{fig:alcm_dunham}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{figures/04-al_dunham_predicted.PNG}
+  \caption{Predicted for Dunham}
+  \label{fig:alcmpred_dunham}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{figures/04-al_drt_best.PNG}
+  \caption{Best for DRT}
+  \label{fig:alcm_drt}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{figures/04-al_predicted_drt.PNG}
+  \caption{Predicted for DRT}
+  \label{fig:alcmpred_drt}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{figures/04-al_compo_best.PNG}
+  \caption{Best for DRT}
+  \label{fig:alcompo_best}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{figures/04-al_compo_pred.PNG}
+  \caption{Predicted for DRT}
+  \label{fig:alcompo_pred}
+\end{subfigure}
+\caption[Confusion matrices of classes trained on AlexNet]{On the left is the confusion matrix of the best performing AlexNet and on the right is the confusion matrix on the test set. The last row contains the summaries of the performance for the multi-label classification.It shows precision, recall f1-score and also the number of samples for each class}
+\label{fig:alexcm}
+\end{figure}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   GOOGLE   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section{GoogleNet}\label{sec:gogl}
+\subsection{Initialization}
+For every class, we tested our network with either random initialization or with using pretrained weights. In Table \ref{tab:googinit}, we can see the best accuracy on validation and test set, the number of epochs for training for each class.  
+On Figure\ref{fig:plotsgoog}, we plotted the accuracy, F1 score, and average training and validation loss for each class. 
+
+\begin{table}
+\caption{\label{tab:googinit} The results of training Inception network using random initialization or pretrained weights with Adamax as optimizer}
+\centering
+\begin{tabular}[b]{| l | l | l | l | l |}
+\hline
+    Initialization & Class & Validation score  & Epochs\\ \hline
+    \multirow{4}{*}{Pretrained} & Dunham &  61\%  & 30 \\ %%cf Confusion Matrix 
+    & Porosity & 76\% &  30 \\
+    &DRT & 100\% &  30 \\
+    &Components & 100\% &  50 \\ \hline
+     \multirow{4}{*}{Random} & Dunham &  90,4\% & 30 \\
+    & Porosity & 97,5\% &  30 \\
+    &DRT & 98,9\% &  30 \\
+    &Components & 100\% & 30 \\ \hline
+\end{tabular} 
+\end{table}
+
+\begin{figure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{figures/04-go_poro_acc.PNG}
+  \caption{Inception-v3 trained on the Porosity class.}
+  \label{fig:googinit_poro}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{figures/04-go_dunham_acc.PNG}
+  \caption{Inception-v3 trained on the Dunham class.}
+  \label{fig:googinit_dunham}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{figures/04-go_drt_acc.PNG}
+  \caption{Inception-v3 trained on the DRT class.}
+  \label{fig:googinit_drt}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{figures/04-go_conponents_acc.PNG}
+  \caption{Inception-v3 trained on the Components class.}
+  \label{fig:googinit_compo}
+\end{subfigure}
+\caption[Training and validation plots for Inception-v3]{The lines in green and red are for pretrained weights and yellow and blue for random initialization. The top plot is the validation accuracy for plots (a) (b) and (c) and the F1-score for plot (d), and the bottom plot is training  and validation loss.}
+\label{fig:plotsgoog}
+\end{figure}
+
+\subsection{Classification}
+On Table\ref{tab:googbest}, we summarize the best validation and test accuracy or F-1 score for every class. Then we present the confusion matrix for the best performing model and the test data set for the single label classification on Figure\ref{fig:googcm}. For the Components class, we show the statistics for every class. 
+
+\begin{table}
+\caption{\label{tab:googbest} The results of the best version of the Inception-v3 on the classification task. The validation and test accuracy are used as score on the single label classification while F1-scores are used for multi-label classification.}
+\centering
+\begin{tabular}[b]{| l | l | l | l | l |}
+\hline
+    Initialization & Class & Validation score & Test score \ \\ \hline
+    Pretrained Weights & Dunham &  90,1\%  & 66,2\% \\ \hline
+    Pretrained Weights & Porosity & 97,5\%  &  76,1\% \\ \hline
+    Pretrained Weights &DRT & 99,2\% & 53,7\% \\ \hline
+    Pretrained Weights &Components & 95,7\% &  44,6\% \\ \hline
+\end{tabular} 
+\end{table}
+
+
+\begin{figure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{figures/04-go_baby_best.PNG}
+  \caption{Best for Porosity}
+  \label{fig:googcm_poro}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{figures/04-go_baby_pred.PNG}
+  \caption{Predicted for Porosity}
+  \label{fig:googcmpred_poro}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{figures/04-go_dunham_best.PNG}
+  \caption{Best for Dunham}
+  \label{fig:googcm_dunham}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{figures/04-go_dunham_pred.PNG}
+  \caption{Predicted for Dunham}
+  \label{fig:googcmpred_dunham}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{figures/04-go_drt_best.PNG}
+  \caption{Best for DRT}
+  \label{fig:googcm_drt}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{figures/04-go_drt_pred.PNG}
+  \caption{Predicted for DRT}
+  \label{fig:googcmpred_drt}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{figures/04-go_compo_best.PNG}
+  \caption{Best for Components}
+  \label{fig:googcm_comp}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{figures/04-go_compo_pred.PNG}
+  \caption{Predicted for Components}
+  \label{fig:googcmpred_comp}
+\end{subfigure}
+\caption[Confusion matrices of classes trained on Inception-v3]{On the left is the confusion matrix of the best performing Inception-v3 and on the right is the confusion matrix on the test set. The last row contains the summaries of the performance for the multi-label classification. It shows precision, recall f1-score and also the number of samples for each class}
+\label{fig:googcm}
+\end{figure}
+
+\section{Optimizer}
+Based on the results of the previous experiment, we chose to optimize further Inception\_v3. Last experiment also showed that the initialization impacted the results similarly on all labels. Our hypothesis is confirmed. We can focus on Dunham for the optimization.
+In this experiment we tried to capture what learning rate was best for our network. We tried the following values: 0.1, 0.01 and 0.01. In table \ref{tab:optimlr}, we summarize the results of the different learning rate. Then on Figure \ref{fig:optimplot}, we can see the training for each learning rate. Finally, on Figure\ref{fig:CM_optim} we show the best predicted confusion matrix for each learning rate.
+
+\begin{table}
+\caption{\label{tab:optimlr} The results of training Inception network using rdifferent learning rate}
+\centering
+\begin{tabular}[b]{| l | l | l |}
+\hline
+    Learning rate & Validation score  & Test score\\ \hline
+    0.1 & Dunham &  61,9\%  & 37,3\% \\ \hline
+    0.01 & 74,1\% &  57,8\\ \hline
+    0.001 & 55,0\% &  25,3\% \\ \hline
+\end{tabular} 
+\end{table}
+\begin{figure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{figures/04-opt_dunham_01.PNG}
+  \caption{Learning rate = 0.1}
+  \label{fig:optim_01}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{figures/04-opt_dunham_001.PNG}
+  \caption{Learning rate = 0.01}
+  \label{fig:optin_001}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{figures/04-opt_dunham_0001.PNG}
+  \caption{Learning rate = 0.001}
+  \label{fig:optim_0001}
+\end{subfigure}
+\end{figure}
