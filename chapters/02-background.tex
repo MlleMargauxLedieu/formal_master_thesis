@@ -100,7 +100,7 @@ The specific property of softmax that makes the probability sum up to 1 makes it
 \section{Optimization}
 The aim of the training and optimization process is to tune the networks parameters in order to predict efficiently labels. To do that, we need to define an objective function which value measures the error between the prediction and the label. During the optimization, we use several methods to adjust the parameters to minimize the objective function.
 
-\subsection{Losses}
+\subsection{Losses} \label{sec:loss}
 %%Editing note: (REF : \url{https://ml-cheatsheet.readthedocs.io/en/latest/loss_functions.htm}l)
 We use two different objective functions in this thesis. The cross-entropy for single label classification and the binary cross entropy for multi-label classification. We will also refer to it as the loss. 
 For single label classification, we define the cross-entropy loss as follows: \[H_y'(y) = - \sum\nolimits_k y'_k log(y_k)\] Where \(y_k\) is the predicted probability for class k and \(y'_k\) is the true probability for this class. It measures the performance of a classification which outputs probabilities between 0 and 1. On  Figure~\ref{fig:CE} , we can see that the closer we get to the true label, the smaller the loss. But when the probability decreases, the loss increases very quickly. So prediction that are very confident but wrong are more penalized \cite{nnbook}.
@@ -115,7 +115,7 @@ For single label classification, we define the cross-entropy loss as follows: \[
 For multi-label classification, we use the binary cross entropy loss. That is because we are not treating our labels as integers, but their one hot encoded representation. For single-labels, if we have three classes, label for class 1 will be 1, label for class 2 will be 2 etc...  For multi-label, we need to have the ability of having more than one label. A label for class 1 will then be [1, 0, 0], label for class 2 [0, 1, 0] and if an item is in class 1 and 2 its label will be [ 1, 1, 0]. So in the case the values of \(y'_k\) are 0 or 1, we use binary cross entropy loss which is defined as follows: \[H_y'(y) = - \sum\nolimits_k y'_k log(y_k)\ + (1 - y'_k)log(1 - y_k) \]
 
 Those are basically two different formulation of the same loss. They have the same behavior and can both be referred to as log loss. 
-\subsection{Gradient Descent and Learning rate}
+\subsection{Gradient Descent and Learning rate} \label{sec:grad_lr}
 %% Editing note: . LEX FRIDMAN MIT
 %% Editing note: RF : https://towardsdatascience.com/gradient-descent-in-a-nutshell-eaf8c18212f0
  "A gradient measures how much the output of a function changes if you change the input a little bit", Lex Fridman, MIT. 
@@ -139,7 +139,7 @@ The Figure~\ref{fig:LR_impact} shows the different behaviours of the training lo
 There are different strategies to chose the good learning rate. A good general idea is to start with a big learning rate to learn quickly in the beginning and make it smaller as we go along with the training. 
 \begin{figure}[!htp]
     \centering
-        \includegraphics[width=0.5\textwidth]{figures/02-LR_impatc_train}
+        \includegraphics[width=0.7\textwidth]{figures/02-LR_impatc_train}
         \caption[Impact of the learning rate on training]{Training loss evolution based on different values of the learning rate. This image has been taken from \cite{cs231n}}\label{fig:LR_impact}
 \end{figure}
 
@@ -165,7 +165,7 @@ Where \(\eta\) is the general learning rate for the parameter update and \(\epsi
 The detailed  Adam algorithm is presented in Algorithm \ref{fig:adam_algo}.
 \begin{figure}[!htp]
     \centering
-        \includegraphics[width=0.5\textwidth]{figures/02-adam_algo}
+        \includegraphics[width=1\textwidth]{figures/02-adam_algo}
         \caption[Adam Algorithm]{ This Algorithm is a optimization of the stochastic gradient descent. It describes the update rule for the first and second moment. Algorithm of has been taken from \cite{adam}}\label{fig:adam_algo}
 \end{figure}
 The Adam optimizer is an iterative algorithm. It means that the parameters will be updated until they reach the stopping criterion. 
@@ -187,7 +187,7 @@ As shown on Algorithm \ref{fig:adamax_algo}, \(u_t\) is initialized to 0 and the
 
 \begin{figure}[!htp]
     \centering
-        \includegraphics[width=0.9\textwidth]{figures/02-adamax_algo}
+        \includegraphics[width=1\textwidth]{figures/02-adamax_algo}
         \caption[Adamax Algorithm]{ This Algorithm is a variant from the Adam algorithm presented below. It is based on the infinity norm. The proof of why we use the max operation is explained in this section. Algorithm of has been taken from \cite{adam}}\label{fig:adamax_algo}
 \end{figure}
 
@@ -232,7 +232,7 @@ It makes it also easy to get the precision and the recall of the model. On Figur
 \section{State of the art networks}
 Image classification is a challenging task that needs to more complex CNNs. I focus on three network architectures that have proven to give significant results in the classification task. Today, ResNet is the one that achieves the best results and AlexNet is the one that does it in the shortest time.    
 
-\subsection{GoogLeNet and Inception-v3}
+\subsection{GoogLeNet and Inception\_v3}
 GoogLeNet was the winner of the ILSRVC in 2014, it also known as Inception V1. It is a CNN inspired by LeNet that introduces a new type of module called inception. Those modules can bee seen as smaller models within the network. 
 
 In classic architecture, you have to decide at each layer which size the filters for the convolution should be: 5x5, 3x3... But from one image to another, the location of the information and its size can vary a lot. That is why it is difficult to know beforehand which of those convolutions would give the best result. The inception module tackles this problem by performing all the convolutions in parallel. It then concatenates the different feature maps before passing it on to the following layer. This way, the model can pick up both local features from the small convolutions and more general features with bigger convolutions \cite{googlepaper}. 
@@ -249,12 +249,12 @@ Figure~\ref{fig:inception} shows the detailed implementation of the inception mo
 \begin{subfigure}{.5\textwidth}
   \centering
   \includegraphics[width=.8\linewidth]{figures/02-googlearch}
-  \caption{Full 22-layers architecture of GoogLeNet}
+  \caption{Full 22-layers architecture of Inception\_v3}
   \label{fig:googl}
 \end{subfigure}
-\caption[Inception network architecture]{Detailed and overview of the architecture of GoogLeNet. Both images have been taken from the original paper \cite{googlepaper}}
+\caption[Inception network architecture]{Detailed and overview of the architecture of Inception\_v3. Both images have been taken from the original paper \cite{googlepaper}}
 \end{figure}
-Some optimization were presented in (going deeper paper). The first one is Inception-v2 which tackles the issue of representational bottleneck. This happens when one use reduces the dimension of the input too much resulting in a loss of information. It solves this issue by replacing the 5x5 convolution by two 3x3 convolutions, which also boosts the performance. On top of that Inception-v3 implements a RSMSProp optimizer,. It also performs a factorization of the 7x7 convolutions in a similar way as Inception-v2 and label smoothing. 
+Some optimization were presented in (going deeper paper). The first one is Inception-v2 which tackles the issue of representational bottleneck. This happens when one use reduces the dimension of the input too much resulting in a loss of information. It solves this issue by replacing the 5x5 convolution by two 3x3 convolutions, which also boosts the performance. On top of that Inception\_v3 implements a RSMSProp optimizer,. It also performs a factorization of the 7x7 convolutions in a similar way as Inception-v2 and label smoothing. 
 
 \subsection{ResNet}
 ResNet won first place in the ILSRVC 2015 image classification competition. It introduces a new network architecture called Residual Learning. 
