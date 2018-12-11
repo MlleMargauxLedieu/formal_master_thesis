@@ -10,23 +10,42 @@
 \usepackage{graphicx}
 \usepackage{subcaption}
 \usepackage{multirow}
+\usepackage{lipsum}
+\usepackage[acronym]{glossaries}
 
 \addbibresource{references.bib} % The file containing our references, in BibTeX format
 
+\makeglossaries
+ 
+ 
+\newglossaryentry{maths}
+{
+    name=epoch,
+    description={An epoch is completed when the model has seen all the data samples once.}
+} 
+\newglossaryentry{over-fitting}
+{
+    name=over-fitting,
+    description={A network is over-fitting when it becomes too specific to the training samples. It does not generalize well on new data.}
+} 
+\newacronym{sgd}{SGD}{Stochastic Gradient Descent}
+\newacronym{cnn}{CNN}{Convolutional Neural Network}
+ 
+ 
 
-\title{This is the English title}
+\title{Predicting reservoir rock quality from thin sections of core using Convolutional Neural Network}
 \alttitle{Detta är den svenska översättningen av titeln}
-\author{Osquar Student}
-\email{osquar@kth.se}
-\supervisor{Lotta Larsson}
-\examiner{Lennart Bladgren}
-\programme{Master in Computer Science}
+\author{Margaux Ledieu}
+\email{lmledieu@kth.se}
+\supervisor{Haibo Li}
+\examiner{Anders Hedman}
+\programme{Master in Machine Learning}
 \school{School of Electrical Engineering and Computer Science}
 \date{\today}
 
 
 \begin{document}
-
+\selectlanguage{english}
 % Frontmatter includes the titlepage, abstracts and table-of-contents
 \frontmatter
 
@@ -52,10 +71,24 @@
 
 
 \tableofcontents
+\cleardoublepage
 
+%% include if relevant
+\listoffigures
+\cleardoublepage
+
+%% include if relevant
+\listoftables
+\cleardoublepage
+
+%% include if relevant Byttet fra \printglossary til \printnoidxglossary
+\printglossary[type=\acronymtype]
+ 
+\printglossary
+\pagenumbering{arabic}
 
 % Mainmatter is where the actual contents of the thesis goes
-\mainmatter
+%\mainmatter
 
 \include{chapters/01-introduction}
 \include{chapters/02-background}

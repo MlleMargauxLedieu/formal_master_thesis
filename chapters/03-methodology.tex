@@ -10,13 +10,14 @@ As explained in Section~\ref{sec:coring}, the data has been gathered through cor
  For the classes that are sufficiently populated, we plot the distribution of the data points within those classes. On Figure~\ref{fig:litandstruct}, we can see the labels distribution for Lithology and Structures. The labels are extremely unbalanced, so trying to predict any other label than Lit1 for Lithology and Structure 1 or 2 for Structures would be very difficult. This is why we will not try to predict on those class. 
  The remaining classes : Porosity, Components, Dunham and DRT, have a good distribution of points within the class. They also give a good overview of the rock properties. If we are able to predict correctly on them, we will have an idea of how good the reservoir rock is. 
 \begin{figure}
-\begin{subfigure}{.5\textwidth}
+\begin{subfigure}{1\textwidth}
   \centering
   \includegraphics[width=.8\linewidth]{figures/03-classes.png}
   \caption{Classes over the samples}
   \label{fig:classes}
 \end{subfigure}%
-\begin{subfigure}{.5\textwidth}
+\\
+\begin{subfigure}{1\textwidth}
   \centering
   \includegraphics[width=.8\linewidth]{figures/03-boob.PNG}
   \caption{Lithology and Structure over samples}
@@ -43,27 +44,27 @@ For single label classification, we calculate the weights of each class as follo
 For multi-label classification, the labels are represented as one-hot encoded vectors as we saw in section~\ref{sec:loss}. We calculate the weights as follows: weight of class A is the number of 0 in class A divided by the number of 1 in class A.
 
 \begin{figure}
-\begin{subfigure}{.5\textwidth}
+\begin{subfigure}{.6\textwidth}
   \centering
-  \includegraphics[width=.8\linewidth]{figures/03-Dunham.PNG}
+  \includegraphics[width=1\linewidth]{figures/03-Dunham.PNG}
   \caption{Dunham Labels}
   \label{fig:dunhamlab}
 \end{subfigure}%
-\begin{subfigure}{.5\textwidth}
+\begin{subfigure}{.6\textwidth}
   \centering
-  \includegraphics[width=.8\linewidth]{figures/03-porosity_baby.PNG}
+  \includegraphics[width=1\linewidth]{figures/03-porosity_baby.PNG}
   \caption{Porosity Labels}
   \label{fig:porolab}
 \end{subfigure}
-\begin{subfigure}{.5\textwidth}
+\begin{subfigure}{.6\textwidth}
   \centering
-  \includegraphics[width=.8\linewidth]{figures/03-DRT.PNG}
+  \includegraphics[width=1\linewidth]{figures/03-DRT.PNG}
   \caption{DRT Labels}
   \label{fig:drtlab}
 \end{subfigure}%
-\begin{subfigure}{.5\textwidth}
+\begin{subfigure}{.6\textwidth}
   \centering
-  \includegraphics[width=.8\linewidth]{figures/03-Components.PNG}
+  \includegraphics[width=1\linewidth]{figures/03-Components.PNG}
   \caption{Components Labels}
   \label{fig:compolab}
 \end{subfigure}
@@ -79,7 +80,7 @@ Cropping is a great way to create multiple images from one image. But there is a
 
 \begin{figure}[h]
     \centering
-        \includegraphics[width=0.3\textwidth]{figures/03-cropping_example_with2crops}
+        \includegraphics[width=0.5\textwidth]{figures/03-cropping_example_with2crops}
         \caption[Thin section with 2 random crops]{ Thin section with two random crops. The yellow and green crops have the same labels but contains very different information. This image has been adapted from \cite{section} which has a gallery of thin sections of carbonate rocks. }
         \label{fig:crops}
 \end{figure}
@@ -95,29 +96,29 @@ The augmentations used in this thesis are :
 \begin{figure}
 \begin{subfigure}{.5\textwidth}
   \centering
-  \includegraphics[width=.8\linewidth]{figures/03-bightness08.PNG}
+  \includegraphics[width=1\linewidth]{figures/03-bightness08.PNG}
   \caption{Brightness= 0.2}
   \label{fig:brightness}
 \end{subfigure}%
 \begin{subfigure}{.5\textwidth}
   \centering
-  \includegraphics[width=.8\linewidth]{figures/03-contrast1.PNG}
+  \includegraphics[width=1\linewidth]{figures/03-contrast1.PNG}
   \caption{Contrast = 0.2}
   \label{fig:contrast}
 \end{subfigure}
 \begin{subfigure}{.5\textwidth}
   \centering
-  \includegraphics[width=.8\linewidth]{figures/03-saturation0.PNG}
+  \includegraphics[width=1\linewidth]{figures/03-saturation0.PNG}
   \caption{Saturation = 0.2}
   \label{fig:saturation}
 \end{subfigure}%
 \begin{subfigure}{.5\textwidth}
   \centering
-  \includegraphics[width=.8\linewidth]{figures/03-hue05.PNG}
+  \includegraphics[width=1\linewidth]{figures/03-hue05.PNG}
   \caption{Hue = 0.5}
   \label{fig:hue}
 \end{subfigure}
-\caption[Color Jitter Augmentation]{Images before and after being augmented with color jitter. The parameter indicated under the image is the only one that is not set to 0. It shows the impact of different the parameters of ColorJitter. The images have been adapted from a thin section collected at \cite{section}}
+\caption[Color Jitter Augmentation]{Images before and after being augmented with ColorJitter. The parameter indicated under the image is the only one that is not set to 0. It shows the impact of different the parameters of ColorJitter. The images have been adapted from a thin section collected at \cite{section}}
 \label{fig:colorjitter}
 \end{figure}
 
@@ -125,31 +126,31 @@ The augmentations used in this thesis are :
 \begin{figure}
 \begin{subfigure}{.5\textwidth}
   \centering
-  \includegraphics[width=.8\linewidth]{figures/03-rotation_260}
+  \includegraphics[width=1\linewidth]{figures/03-rotation_260}
   \caption{Circle crop and 260 degrees rotation}
   \label{fig:rotate}
 \end{subfigure}%
 \begin{subfigure}{.5\textwidth}
   \centering
-  \includegraphics[width=.8\linewidth]{figures/03-resize.PNG}
+  \includegraphics[width=1\linewidth]{figures/03-resize.PNG}
   \caption{Resizing to 224x224 pixels}
   \label{fig:resize}
 \end{subfigure}
 \begin{subfigure}{.5\textwidth}
   \centering
-  \includegraphics[width=.8\linewidth]{figures/03-elastic_trans_08_03.PNG}
+  \includegraphics[width=1\linewidth]{figures/03-elastic_trans_08_03.PNG}
   \caption{Elastic Transform with (\(\alpha\)=3, \(\sigma\)=0.3)}
   \label{fig:elastics1}
 \end{subfigure}%
 \begin{subfigure}{.5\textwidth}
   \centering
-  \includegraphics[width=.8\linewidth]{figures/03-elastic_trans_3000_30.PNG}
+  \includegraphics[width=1\linewidth]{figures/03-elastic_trans_3000_30.PNG}
   \caption{Elastic Transform with (\(\alpha\)=3000, \(\sigma\)=30)}
   \label{fig:elastics2}
 \end{subfigure}
 \begin{subfigure}{.5\textwidth}
   \centering
-  \includegraphics[width=.8\linewidth]{figures/03-medianscale}
+  \includegraphics[width=1\linewidth]{figures/03-medianscale}
   \caption{Median Scale}
   \label{fig:median}
 \end{subfigure}
@@ -196,7 +197,7 @@ AxelNet is a smaller network, only eight layers deep, so the lack of training da
   \caption{Inception\_v3}
   \label{fig:googarch}
 \end{subfigure}
-\caption[Networks architectures]{The architectures of the three networks. AlexNet is a simple eight layers network divided in two parts: feature extraction and classification. Resnet 18 is a deep network with a basic block repeated several times and a single linear layer in the end. Inception\_v3 is a 22 deep CNN with repeated Inception blocks.}
+\caption[Networks architectures]{The architectures of the three networks. AlexNet is a simple eight layers network divided in two parts: feature extraction and classification. Resnet 18 is a deep network with a basic block repeated several times and a single linear layer in the end. Inception\_v3 is a 22 deep \gls{cnn} with repeated Inception blocks.}
 \end{figure}
 
 \subsection{Hyper parameters}
@@ -216,9 +217,9 @@ The batch sized is fixed to 700 so that two experiments can be run in parallel o
 
 \subsubsection{Optimizers}
 For Adamax, there is a set of default values for the hyper-parameters: \(\eta = 0.002\), \(\beta_1 = 0.9\) \(\beta_2 = 0.999\), \(\epsilon = 1e-8\) that we will keep across all experiments. We kept those from the default configuration of the optimizer. 
-For the SGD, we choose an initial value of learning rate in [0.1, 0.01, 0.001] and implemented a learning rate decay every 30 iterations, and a momentum of 0.9. 
+For the \gls{sgd}, we choose an initial value of learning rate in [0.1, 0.01, 0.001] and implemented a learning rate decay every 30 iterations, and a momentum of 0.9. 
 
-Adamax is used to get a good convergence quickly, this is why we use Adamax in the first experiment on the weight initialization. This first experiment is going to give us insight on which network performs best on the different labels. Then in a second experiment, we will try to optimize further the best performing model. To reach the best possible results We will use the SGD+momentum optimizer. We can then check the influence of the optimizer on our results. 
+Adamax is used to get a good convergence quickly, this is why we use Adamax in the first experiment on the weight initialization. This first experiment is going to give us insight on which network performs best on the different labels. Then in a second experiment, we will try to optimize further the best performing model. To reach the best possible results We will use the \gls{sgd}+momentum optimizer. We can then check the influence of the optimizer on our results. 
 
 \subsubsection{Regularization}
-As we mentioned before, the small amount of data we have make overfitting likely. In order to avoid this problem, we add a layer of dropout with probability 0.5 in AlexNet. Inception\_v3. ResNet and Inception\_v3 already performs batch normalization between every convolutional. That is a efficient way of doing regularization. This is why we did not add any dropout layer.  
+As we mentioned before, the small amount of data we have make over-fitting likely. In order to avoid this problem, we add a layer of dropout with probability 0.5 in AlexNet. Inception\_v3. ResNet and Inception\_v3 already performs batch normalization between every convolutional. That is a efficient way of doing regularization. This is why we did not add any dropout layer.  

@@ -7,7 +7,7 @@ In our study, we set out to answer three research questions:
 \end{itemize}
 
 
-The results of this study is that we can predict on the porosity class with xx\% accuracy, the Dunham class with XX\%, DRT with XX\% and the components with a F1-sore of xx\%. As we explained in section \ref{sec:perf}, there is some subjectivity in the labeling task. Taking this into account, those results are highly satisfying. We confirm that we can use CNN can be used for our classification task.
+The results of this study is that we can predict on the porosity class with xx\% accuracy, the Dunham class with XX\%, DRT with XX\% and the components with a F1-sore of xx\%. As we explained in section \ref{sec:perf}, there is some subjectivity in the labeling task. Taking this into account, those results are highly satisfying. We confirm that we can use \gls{cnn} can be used for our classification task.
 
 For the second question, we found that Inception\_v3 was the best performing network. This is surprising since ResNet is the best state of the art network today. 
 
@@ -15,4 +15,7 @@ We also found  that depending on the network, the initialization strategy  lead 
 
 The aim of this project was to build a classification algorithm that could be used by geologists to help them in their day to day labeling work. We can say that we achieved our goal since we have a robust and accurate network, able to classify the different classes. We should of course keep in mind that the aim is not to replace the geologist on site. We provide them with first assumption that they can chose to confirm or challenge. 
 
-To take this project further, we would need more data to train our model on. Also, a good way to measure the performance of our algorithm would be to take it through a Turing test. This would objectively say which one of the algorithm or the geologists are more consistent in the labeling task. Once this is used by geologists, the feedback that we will receive is going to improve the quality of our prediction. In a few years, the geologists might only have a checking task when labeling core samples. The algorithm would output such goo prediction that no further analysis work is required.  
+We identified that our main limitation was the amount of training data. Even though we achieved good results, those networks thrive when given large amounts of data. Nevertheless, our project gives a good proof of concept. The second limitation is the 'black box' nature of this algorithm. The lack of understanding of the representations learned by the networks makes it hard for geologists to trust it.
+To take this project further, we would need more data to train our model on. Also, a good way to measure the performance of our algorithm would be to take it through a Turing test. Also, a study to evaluate geologists accuracy in classifying core thin sections would help us understand better where the difficulty lies. And improve  our model consequently. It would objectively say which one of the algorithm or the geologists are more consistent in the labeling task. 
+
+Once this algorithm is used by geologists, the feedback that we will receive will improve the quality of our prediction. In a few years, the geologists might only have a checking task when labeling core samples. Lastly, image classification tasks are very popular in the field at the moment. This means that every year, a new better performing network will be published. Keeping up to date and trying new solutions will ensure always achieving the best results. 
