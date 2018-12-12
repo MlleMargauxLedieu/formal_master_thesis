@@ -12,10 +12,10 @@ The search for hydrocarbons - oil and gas - concentrates within the upper crust 
         \caption[The rock cycle]{The rock cycle describes how rocks transforms. It shows how erosion and weather transform igneous rocks in to sedimentary rocks. It further shows how metamorphism transforms the latter in metamorphic rocks. And how the crystallization of the magma of those produces igneous rocks. Adapted from the Oil and Gas beginners book \cite{oilbegin} }\label{fig:rock-cycle}
     \end{figure}
 
-Those cycles form hydrocarbon source rocks, reservoir and seals. The movement of the plates also introduces non-linearity in the rocks where oil or gas can be trapped. Those structural traps are where we usually drill from. As we see in red on Figure~\ref{fig:rock-cycle}, there are three types of rocks: igneous, sedimentary and metamorphic. The cooling of minerals from magma  forms  igneous rocks. Metamorphic rocks are generated through  the burial process of rocks. As rocks are buried, they are exposed to higher temperature and pressure transforming organic matter into oil and gas. Sedimentary rocks account for almost all oil and gas reserve. They deposit in layers, reflecting the history of the depositional basin.
+These cycles, and their interaction with biological processes form hydrocarbon source rocks, reservoir and seals. The movement of the plates also introduces non-linearity in the rocks where oil or gas can be trapped. Those structural traps are where we usually drill from. As we see in red in Figure~\ref{fig:rock-cycle}, there are three types of rocks: igneous, sedimentary and metamorphic. The cooling of minerals from magma  forms  igneous rocks. Metamorphic rocks are generated through  the burial process of rocks. As rocks are buried, they are exposed to higher temperature and pressure transforming organic matter into oil and gas. Sedimentary rocks account for almost all oil and gas reserve. They deposit in layers, reflecting the history of the depositional basin.
 
 
-The hydrocarbon formation process has several steps. First the maturation. Organic matter is buried and exposed to such temperature and pressure conditions that it converts into hydrocarbon.  Then follows the second part of the process: migration. It is when the hydrocarbon moves from the source rocks to the reservoir. At high temperature the oil has a lower density allowing it to move upwards through fractures in the source rocks and the reservoir rocks. At even higher temperature, the oil dissolves into gas phase. When it moves upwards, the pressure decreases causing it to condensate back to liquid form. The hydrocarbon is then trapped in the reservoir rock. The trap should ideally be impermeable (no fluid can flow through it). But an escape rate smaller than the production rate is sufficient for the trap to be commercially viable \cite{oilbegin}. 
+The hydrocarbon formation process has several steps. First the maturation. Organic matter is buried and exposed to such temperature and pressure conditions that it converts into hydrocarbon. Then follows the second part of the process: migration. It is when the hydrocarbon moves from the source rocks to the reservoir. The generated hydrocarbons have a lower density than the surrounding water, and at sufficient temperatures their viscosity is lowered (possibly even entering a gaseous phase) allowing them to move upwards through fractures in the source rocks and enter the permeable reservoir rocks. When it moves upwards, the pressure decreases causing it to condensate back to liquid form. The hydrocarbon is then trapped in the reservoir rock. The trap should ideally be impermeable (no fluid can flow through it). But an escape rate smaller than the production rate is sufficient for the trap to be commercially viable \cite{oilbegin}. 
 
 Only a portion of this volume of hydrocarbon can be extracted. The amount depends on several factors such as porosity, permeability, lithology etc.  The following sections present some of those properties. 
 \subsection{Dunham Classification}
@@ -24,8 +24,8 @@ Those criteria lead to four classes :
 \begin{itemize}
     \item Mudstone: mud-supported carbonate rock with less than 10\% grain.
     \item Wackestone: mud-supported carbonate rock with more than 10\% grain.
-    \item Packstone: grain-supported carbonate rock with more than 1\% mud.
-    \item Grainstone: grain-supported carbonate rock with less than 1\% mud.
+    \item Packstone: grain-supported carbonate rock with more than 10\% mud.
+    \item Grainstone: grain-supported carbonate rock with less than 10\% mud.
 	\begin{figure}[!htp]
     \centering
         \includegraphics[width=1\textwidth]{figures/02-Dunhams-classification}
@@ -54,10 +54,10 @@ The permeability of a rock describes how easily liquids can flow through it. It 
 Rocks that  combine good porosity and permeability are good reservoirs . Typically, rock with high porosity and high permeability will make a good reservoir rock. It can hold and deliver large amounts of oil. 
 
 \subsection{Coring}\label{sec:coring}
-The first step to determine where to drill is the seismic study. A big "bang" sends wave sounds that propagates into the earth crust and are partially reflected by the different rock layers. Geophones placed on the surface gather, register and store those wave sounds. This operation is repeated several times in different places and the data gathered creates a seismic images. This images are then interpreted by geologists to identify and target zones with high chances of finding oil \cite{oilbegin}. 
+The first step to determine where to drill is the seismic study. A big "bang" sends wave sounds that propagate into the earth crust and are partially reflected by the different rock layers. Geophones placed on the surface gather, register and store those wave sounds. This operation is repeated several times in different places and the data gathered creates a seismic images. This images are then interpreted by geologists to identify and target zones with high chances of finding oil \cite{oilbegin}. 
 
 
-Once we found an area of interest, we drill a hole is and lower sensors  to the bottom of the well to take measurements. Several instruments are used to collect those measurements.  Gamma ray gives information about the level of clay, resistivity indicates potential hydrocarbon sources and sonic indicates porosity of the rock. But the best way to identify what kind of rocks we drill through is coring. This operation consists in drilling very slowly with a special drilling bit and extract a piece of the rock which looks like a cylinder. Then we infiltrate a resine through the core to make sure it holds and all the fragments stick together. Then we cut very thin sections out of the core, take high resolution pictures, and we ask geologist to label them. The result is a precise description of the rock the exploration is drilling through \cite{oilbegin}.  
+Once we found an area of interest, we drill a hole and lower sensors through the well to take measurements. Several instruments are used to collect those measurements.  Gamma ray gives information about the level of clay, resistivity indicates potential hydrocarbon sources and sonic indicates porosity of the rock. But the best way to identify what kind of rocks we drill through is coring. This operation consists in drilling very slowly with a special drilling bit and extract a piece of the rock which looks like a cylinder. Then we infiltrate a resine through the core to make sure it holds and all the fragments stick together. Then we cut very thin sections out of the core, take high resolution pictures, and we ask geologist to label them. The result is a precise description of the rock the exploration is drilling through \cite{oilbegin}.  
 
 This technique is costly since it takes days out of the normal drilling process and it can be very slow. It is also not 100\% reliable: there can be gaps in the core, it can collapse or sometimes we do not manage to extract core at all. This is why coring is not performed often. 
 
@@ -67,25 +67,25 @@ A \gls{cnn} is a network that makes the explicit assumption that its inputs are 
 For images, the ordered aspect of the data implies that one can encode some properties into the architecture of the network. One of them is that nearby pixels are more correlated than distant pixels. This allows the network to extract local features dependant only on small sub-regions of the image and it drastically reduces the number of parameters. 
 
 
-A \gls{cnn} consists of three basic layers \cite{deepbook}.  In the first layer, several linear operations are performed in parallel. It produces a set of linear activation: it is the convolution layer. The second layer is the activation layer: the activation function is applied to the linear activation. This will produce a feature map representing the local features that were detected in the previous stage. The third layer is the pooling layer, this reduces the number of parameters to increase efficiency and produces a smaller feature map. Lastly, we can add a last layer: the fully connected layer, it will use the extracted features to classify the images into classes.
+A \gls{cnn} consists of three basic types of layers \cite{deepbook}.  In the first layer, several linear operations are performed in parallel. It produces a set of linear activation: it is the convolution layer. The second layer is the activation layer: the activation function is applied to the linear activation. This will produce a feature map representing the local features that were detected in the previous stage. The third layer is the pooling layer, this reduces the number of parameters to increase efficiency and produces a smaller feature map. Lastly, we can add a last layer: the fully connected layer, it will use the extracted features to classify the images into classes.
 
 
 \subsection{Convolution Layer}
 
-The convolution is performed on the input data by a filter or a kernel to produce a feature map. We proceed to the convolution by sliding the filter over the input. The convolution consist of a matrix multiplication and as sum. This results is written on the feature map. Each filter is trained to identify a certain feature and it will detect it everywhere on the image.  Many convolutions are performed using different kernels and producing several feature maps \cite{nnbook}.
+The convolution is performed on the input data by a filter or a kernel to produce a feature map. We proceed to the convolution by sliding the filter over the input. The convolution result is the summation of an elementwise multiplication between the input and the kernel. This results is written on the feature map. Each filter is trained to identify a certain feature and it will detect it everywhere on the image.  Many convolutions are performed using different kernels and producing several feature maps \cite{nnbook}.
 
-Here is an example of how the feature maps are calculated. On Figure~\ref{fig:convo_calc}, the blue 3x3 matrix is the filter and the matrix on the left is the input. To get the 4 that is highlighted with green, we do a matrix multiplication followed by a sum: 1x1 + 0x0 + 0x1 + 1x0 + 1x1 + 0x0 +1x1 + 1x0 + 1x1 = 4. 
+Here is an example of how the feature maps are calculated. In Figure~\ref{fig:convo_calc}, the blue 3x3 matrix is the filter and the matrix on the left is the input. To get the 4 that is highlighted with green, we do an elementwise multiplication followed by a sum: 1x1 + 0x0 + 0x1 + 1x0 + 1x1 + 0x0 +1x1 + 1x0 + 1x1 = 4. 
 	\begin{figure}[!htp]
     \centering
         \includegraphics[width=0.9\textwidth]{figures/02-conv_layer}
         \caption[Convolution calculations]{Convolution layer calculations. The calculations are detailed above. Here the filter size is 3x3 and the stride is 1 since we are writing the 4th entry in the feature map.}\label{fig:convo_calc}
     \end{figure}
     
-The area marked  in  red in the input is the receptive field. The kernel is moving over the image with a certain step size called the stride. A stride of 1 means that the kernel slides pixel by pixel. The stride length affect the size of the feature map: the larger stride length the fewer hidden neurons in the feature map. But no matter the stride size, the feature map will always be smaller than its input. This implies that if the network is deep, the feature maps might shrink. To prevent that, we use padding, which is adding a layer of zero value pixels to surround the input with. This keeps the spatial size constant after the convolution. It also improves the performance and makes sure the kernel and stride size fit with the input. 
+The area marked  in  red in the input is the receptive field. The kernel is moving over the image with a certain step size called the stride. A stride of 1 means that the kernel slides pixel by pixel. The stride length affect the size of the feature map: the larger stride length the fewer hidden neurons in the feature map. But no matter the stride size, the feature map will always be smaller than its input. This implies that if the network is deep, the feature maps might shrink. To prevent that, we use padding, which is adding a layer of zero value pixels to surround the input with. This keeps the spatial size constant after the convolution. It also improves the performance by preventing the information at the borders from being "washed away" and makes sure the kernel and stride size fit with the input \cite{cs231n}. 
 
 \subsection{Pooling layer}
-After a convolution layer, it is normal to add a pooling layer. The purpose of pooling is to reduce the dimensionality, the number of parameters and computations in the network. This shortens training and controls over-fitting.
-The type of pooling that is mostly used is max pooling which takes the largest value in each square as shown on Figure ~\ref{fig:maxpool}. The square dimensions (2x2 on Figure ~\ref{fig:maxpool})  and the stride are determined beforehand. This layer decreases the feature map size while keeping a sufficient amount of information. 
+After a convolution layer, it is normal to add a pooling layer. The purpose of pooling is to reduce the number of parameters and computations in the network. This shortens training and controls over-fitting.
+The type of pooling that is mostly used is max pooling which takes the largest value in each square as shown in Figure ~\ref{fig:maxpool}. The square dimensions (2x2 in Figure ~\ref{fig:maxpool})  and the stride are determined beforehand. This layer decreases the feature map size while keeping a sufficient amount of information. 
 	\begin{figure}[!htp]
     \centering
         \includegraphics[width=0.9\textwidth]{figures/02-maxpool}
@@ -93,20 +93,20 @@ The type of pooling that is mostly used is max pooling which takes the largest v
     \end{figure}
  
    
-Most of the pooled output values have very small transitional variance. This means that a translation in the input will not impact the output too much. This is very valuable since it is more important to detect the feature than to know precisely where it is situated in the image. The max-pooling will forget the exact position to focus on the relative position compared to the other features \cite{cs231n}.
+Most of the pooled output values have very small translational variance. This means that a translation in the input will not impact the output too much. This is very valuable since it is more important to detect the feature than to know precisely where it is situated in the image. The max-pooling will forget the exact position to focus on the relative position compared to the other features \cite{cs231n}.
 
 \subsection{Classification Layer}
 \label{sec:class_lay}
 After the pooling layer, most \gls{cnn} architecture will have one or more fully connected layers. Those layers are connected to all the input neurons. To perform the classification, we need this fully connected layer to have as many output neurons as classes to classify. If you are trying to classify between red and white for example, you would have two output neurons.  It also needs to be combined with an activation function. This way, it outputs a probability distribution that allows the network to predict the class that has the highest probability. The choice of the activation function depends on the nature of the classification task \cite{deepbook}.
 \subsubsection{Single label classification}
-When a network is trying to predict only one class, we usually use a softmax activation function. It is defines as follows: \[softmax_j(x) = \frac{e^x_{j}}{\sum\nolimits_{k} e^x_{k}} \] Where \(x_j\) is the probability of the vector x to belong to class j. Softmax is useful because it converts the output of the last layer in the network into normalized class probabilities. The probabilities sums up to one. It makes it easy to identify the most likely output since it will be the one with the highest probability. 
+When a network is trying to predict only one class, we usually use a softmax activation function. It is defined as follows: \[softmax_j(x) = \frac{e^x_{j}}{\sum\nolimits_{k} e^x_{k}} \] Where \(x_j\) is the probability of the vector x to belong to class j. Softmax is useful because it converts the output of the last layer in the network into normalized class probabilities. The probabilities sums up to one. It makes it easy to identify the most likely output since it will be the one with the highest probability. 
 \subsubsection{Multi-label classification}
 The specific property of softmax that makes the probability sum up to 1 makes it unusable for multi-label classifications. Which is when one picture can have several labels. For that case, we use the sigmoid function as activation for the last layer. It will produce values between 0 and 1.
 \[sigmoid(x) = \frac{1}{1 - e^x} \]
-The high values of output will be interpreted as high probability. We can chose a threshold for label selection, for example 0.5. We then say that if the value for the output of the sigmoid is greater than 0.5, we predict the label, otherwise we do not. This allows several labels to be predicted since more than one label can have a high value. 
+The high values of output will be interpreted as high probability. We can choose a threshold for label selection, for example 0.5. We then say that if the value for the output of the sigmoid is greater than 0.5, we predict the label, otherwise we do not. This allows several labels to be predicted since more than one label can have a high value. 
 
 \section{Optimization}
-The aim of the training and optimization process is to tune the networks parameters in order to efficiently predict labels. To do that, we need to define an objective function which value measures the error between the prediction and the label. During the optimization, we use several methods to adjust the parameters to minimize the objective function.
+The aim of the training and optimization process is to tune the network's parameters in order to efficiently predict labels. To do that, we need to define an objective function which value measures the error between the prediction and the label. During the optimization, we use several methods to adjust the parameters to minimize the objective function.
 
 \subsection{Losses} \label{sec:loss}
 %%Editing note: (REF : \url{https://ml-cheatsheet.readthedocs.io/en/latest/loss_functions.htm}l)
@@ -127,8 +127,8 @@ Those are basically two different formulation of the same loss. They have the sa
 %% Editing note: . LEX FRIDMAN MIT
 %% Editing note: RF : https://towardsdatascience.com/gradient-descent-in-a-nutshell-eaf8c18212f0
  \begin{quote}
-     A gradient measures how much the output of a function changes if you change the input a little bit
- \end{quote}, Lex Fridman, MIT. 
+     "A gradient measures how much the output of a function changes if you change the input a little bit."
+ \end{quote} Lex Fridman, MIT. 
 
 
 In order to minimize the objective function, we use gradient based methods. The gradient descent is an iterative method which updates the parameters of the network with the aim of minimizing the objective function. By moving the parameters in small steps in the opposite direction of the gradient, we reduce the objective function \cite{cs231n}. 
@@ -153,20 +153,20 @@ There are different strategies to choose the good learning rate. A general idea 
         \caption[Impact of the learning rate on training]{Training loss evolution based on different values of the learning rate. This image has been taken from \cite{cs231n}}\label{fig:LR_impact}
 \end{figure}
 
-\subsubsection{Gradient Descent variant}
+\subsection{Gradient Descent variant}
 There are three variants of gradient descent which differ in the amount of data we use to compute the gradient of the cost function \cite{gradient}. 
 \begin{itemize}
     \item The batch gradient descent compute the gradient of the cost function for the entire training dataset. This is computationally efficient and gives a stable error gradient but it is intractable if the dataset does not fit in memory. 
     \item The second variant is \gls{sgd} which computes the gradient for every training example. It can be redundant since we recompute the gradient for very similar training examples.
     \item The third variant is a compromise between the two others, it computes the gradient for every mini batch of n training example. This reduces the variance of the parameter update without wasting computation. It can also lead to a more stable convergence.
-\end{itemize}There are still challenges, mainly regarding the learning rate. As we stated earlier, it is difficult to find a good value for it. A solution is to reduce the learning rate according to a specific time line. We can divided it by 10 every ten epoch for example, or when the cost function is below a fixed threshold. These works well but they have to be defined in advance so they don not adapt to the data. The ultimate challenge is to keep the gradient from getting stuck in local minimun or saddle points. Some algorithms or additional parameters have been implemented to overcome those challenges
-\subsubsection{Momentum}
+\end{itemize}There are still challenges, mainly regarding the learning rate. As we stated earlier, it is difficult to find a good value for it. A solution is to reduce the learning rate according to a specific time line. We may reduce it by a factor of 10 every tenth epoch, for example, or when the cost function is below a fixed threshold. These strategies are effective but they have to be defined in advance so they don not adapt to the data. The ultimate challenge is to keep the gradient from getting stuck in local minimun or saddle points. Some algorithms or additional parameters have been implemented to overcome those challenges
+\subsection{Momentum}
 Around a local minimum, the surface curves are often steeper in one dimension than the others, this is called a ravine. In those areas, the gradient descent oscillates across the slopes and converges slowly to the local minimum. The momentum helps to achieve convergence faster by speeding up the gradient descent in the good direction. For that, it remembers the value of the update vector at the past iteration and uses it to calculate the new update \cite{optimgrad}. \[ v_t = \gamma v_{t-1} + \eta . \nabla_\theta J(\theta)  \] \[\theta' = \theta - v_t\]
-Where \(v\) is the velocity and \(\gamma\) is the momentum term. The velocity represents the direction and the speed of the parameters. \(\gamma\) determines how much the velocity term impacts the update. With momentum, the gradient keeps in memory the direction the gradient was going before. So if the gradient keeps going in the same direction, it will gain velocity and make bigger updates. But if there is a sudden change of direction, the update will be moderated and there will be less oscillations. A common analogy for this is to imagine a ball going down a hill. While it rolls down, the momentum adds mass, making it go faster and overcoming smaller bumps \cite{optimgrad}. A risk of this technique is that if the gradient accumulates too much velocity in one direction, it might overlook a local minimum. 
+Where \(v\) is the velocity and \(\gamma\) is the momentum term. The velocity represents the direction and the speed of the parameters. \(\gamma\) determines how much the velocity term impacts the update. With momentum, the gradient keeps in memory the direction the gradient was going before. So if the gradient keeps going in the same direction, it will gain velocity and make bigger updates. But if there is a sudden change of direction, the update will be moderated and there will be less oscillations. A common analogy for this is to imagine a ball going down a hill. While it rolls down, the momentum adds mass, making it go faster and overcoming smaller bumps \cite{optimgrad}. A risk of this technique is that if the gradient accumulates too much velocity in one direction, it might overlook the minimum. 
 
-\subsubsection{Adam Optimizer}
+\subsection{Adam Optimizer}
 
-An other optimization algorithm is Adam and stands for Adaptive Moment Estimation. It computes adaptive learning rates for each parameter. Adam stores estimates of the first and second moments - \(m_t\) and \(v_t\) - which are respectively the mean and the uncentered variance of the gradient. They are computed as follow: \[ v_t = \beta_2 v_{t-1} + (1 - \beta_2)g_t^2 \] \[m_t = \beta_1 m_{t-1} + (1 - \beta_1)g_t \]
+An other optimization algorithm is Adam and stands for Adaptive Moment Estimation. It computes adaptive learning rates for each parameter. Adam stores estimates of the first and second moments - \(m_t\) and \(v_t\) - which are respectively the mean and the uncentered variance of the gradient. They are computed as follows: \[ v_t = \beta_2 v_{t-1} + (1 - \beta_2)g_t^2 \] \[m_t = \beta_1 m_{t-1} + (1 - \beta_1)g_t \]
 Where \(\beta_1\) and \(\beta_2\) are the learning rates and \(g_t\) is the gradient. The parameter updates according to how much the gradients are changing on average but also from one iteration to the other.  \(m_t\) and \(v_t\) are initialized as 0 vectors. Experiments shows that they are biased towards 0, especially during the early steps when the learning rates are small. We handle this bias by producing estimates of the first and second moment that are bias corrected \(\hat{m}_t\) and \(\hat{v}_t\), \cite{adam}.
 \[ \hat{v}_t=  \frac{v_{t}}{1 - \beta_2^t}\] 
 \[\hat{m}_t=  \frac{m_{t}}{1 - \beta_1^t}\] 
@@ -182,7 +182,7 @@ The Adam optimizer is an iterative algorithm. It means that the parameters will 
 Adam optimizer has shown that it achieves good results fast and is thus used as a default in many 
 computer vision and deep learning algorithms. There are several variants of the Adam optimizer.
 
-\subsubsection{Adamax}
+\subsection{Adamax}
 One variant of the Adam algorithm is the Adamax optimizer. In the Adam algorithm, we use the \(L^2\) norm to update \(v_t\). This can be generalized to a \(L^p\) norm based update rule that would write as follows: \[ v_t = \beta_2^p v_{t-1} + (1 - \beta_2^p) \mid g_t\mid^p \] This variant will become unstable as p gets bigger than 1 or 2. Surprisingly, as \(p\to\infty\), the behavior is simple and stable. If we then defined \(u_t\) as \[u_t = \lim_{p\to\infty}(v_t)^{1/p}\]
 \[u_t = \lim_{p\to\infty}(\beta_2^p v_{t-1} + (1 - \beta_2^p)\mid g_t\mid^p)^{1/p}\] 
 \[u_t = \lim_{p\to\infty}(1 - \beta_2^p)^{1/p}(\sum_{i=1}^{t}\beta_2^{t-i} \mid g_i\mid ^p)^{1/p}\]
@@ -192,7 +192,7 @@ One variant of the Adam algorithm is the Adamax optimizer. In the Adam algorithm
 
 The last equation can be very easily written recursively: 
 \[ u_t = \max(\beta_2 . u_{t-1},  \mid g_t\mid)\]
-As shown on Figure \ref{fig:adamax_algo}, \(u_t\) is initialized to 0 and then plugged in the Adam update: 
+As shown in Figure \ref{fig:adamax_algo}, \(u_t\) is initialized to 0 and then plugged in the Adam update: 
 \[\theta_{t+1} = \theta_t - \frac{\eta}{u_t} \hat{m}_t\]
 
 \begin{figure}[!htp]
@@ -204,10 +204,10 @@ As shown on Figure \ref{fig:adamax_algo}, \(u_t\) is initialized to 0 and then p
 As \(u_t\) relies on the \(\max\) operation, it does not have a bias towards 0. This is why we do not need to calculate an estimate nor add a stabilization constant as for \(\hat{v}_t\) to calculate the update rule \cite{adam}.
 
 \section{Accuracy and Validation metrics}
-In order to find out how a model is performing, we need to chose some metrics. The most popular one is accuracy since it speaks to anyone even not familiar with the field. But it can be limited in some cases and give a false impression that the model is doing well when it actually is not. To get a better overview, we use precision and recall. 
+In order to find out how a model is performing, we need to choose some metrics. The most popular one is accuracy since it speaks to anyone even not familiar with the field. But it can be limited in some cases and give a false impression that the model is doing well when it actually is not. To get a better overview, we use precision and recall. 
 
 \subsection{F1 score}
-While accuracy is a good indication of how well the model is performing, they can give erroneous information. Let say you are trying to identify people with a rare disease. We could very easily produce a model with 99.999999\% accuracy to identify a sick person simply by labeling every single individual as sick.We produced a model with a nearly perfect accuracy, but with no value. In cases where there is quit a big imbalance between classes, the accuracy will not be a good measure of performance.
+While accuracy is a good indication of how well the model is performing, they can give erroneous information. Let say you are trying to identify people with a rare disease. We could very easily produce a model with 99.999999\% accuracy to identify a healthy person simply by labeling every single individual as sick.We produced a model with a nearly perfect accuracy, but with no value. In cases where there is quit a big imbalance between classes, the accuracy will not be a good measure of performance.
 What is important in our toy case is to identify as many of the relevant cases as possible, this is similar to maximizing the recall \cite{multimetrics}. 
 
 Recall calculation uses true positive (samples classified as positive that are actually positive) and true negatives (samples classified as negative that are actually positive). The recall is then defined as the number of true positives divided by the sum of the true positives and false negatives \cite{metrics}. 
@@ -234,7 +234,7 @@ A confusion matrix is a an overview of the precision and recall results of a cla
 \end{figure}
 
 It is relevant to know if your model is more likely to mix up  a German shepherd for a fox or a fox for a turtle. It makes the interpretation of the results better since you know how your model is biased. Also, some errors are more acceptable than others. We can consider a model with lower accuracy but miscalssifying similar objects better than a model with very high accuracy but missing simple cases. 
-It makes it also easy to get the precision and the recall of the model. On Figure~\ref{fig:CM}, we see clearly how to identify true and false positives/negatives. This makes the calculation that we saw in last section easy to make. 
+It makes it also easy to get the precision and the recall of the model. In Figure~\ref{fig:CM}, we see clearly how to identify true and false positives/negatives. This makes the calculation that we saw in last section easy to make. 
 
 \section{State of the art networks}
 We focus on three network architectures that have proven to give significant results in the classification task. Today, ResNet is the one that achieves the best results and AlexNet is the one that does it in the shortest time.    
@@ -272,7 +272,7 @@ When deep networks get even deeper, the accuracy gets saturated and decreases ra
 \begin{figure}[!htp]
     \centering
         \includegraphics[width=0.9\textwidth]{figures/02-resnet_block}
-        \caption[Building block of Resnet]{Building block of ResNet. Instead of having only stacked layers, we also have the identity function. Figure taken from the original paper \cite{resnetpaper}}\label{fig:resnetblock}
+        \caption[Building block of ResNet]{Building block of ResNet. Instead of having only stacked layers, we also have the identity function. Figure taken from the original paper \cite{resnetpaper}}\label{fig:resnetblock}
 \end{figure}
 %% Editing note : medium article 
 A regular network architecture learns the mapping of input x to output y with a function H(x) which is a few stacked non linear layers. ResNet architecture defines a residual function using F(x) = H(x) – x which can be expressed as F(x) = H(x) + x. H(x) is a few stacked non linear layers and x is the identity function, see Figure~\ref{fig:resnetblock}. The intuition behind this architecture is that if the identity mapping is optimal (we want the input to be equal to the output), it’s easier to drive H(x) to 0 and only keep the identity than to fit H(x) to the identity \cite{mediumresnet}. In practice, identity mappings are rarely optimal. But the hypothesis that it’s easier to optimize a residual mapping  than the original mapping is proven during experiments. Figure~\ref{fig:resnetaccs} shows that ResNet overcomes the degradation problem. It also achieves better results than its plains counterparts.
@@ -294,7 +294,7 @@ The idea is to parallelize in different ways depending on the kind of layer the 
 \end{itemize}
 As we saw in section 2.3, \gls{cnn}s consist of two types of layers. Convolutional layers that contain most of the computations (between 90 and 95\%) and fully connected layers that contains most of the model parameters (around 95\%). In AlexNet, the convolutional layers rely on data parallelism while fully connected layers rely on model parallelism \cite{alexpaper}. 
 
-This is illustrated on Figure~\ref{fig:alexnet}. 
+This is illustrated in Figure~\ref{fig:alexnet}. 
 \begin{figure}[!htp]
     \centering
         \includegraphics[width=0.9\textwidth]{figures/02-alexnet}
@@ -317,9 +317,9 @@ Those two techniques can be adapted.  An alternative would then be to freeze the
 Using transfer learning helps achieving faster and better results. Since it starts from a very advanced level instead of starting from scratch, the networks converges and learns much more quickly on the new data.
 
 \section{Data Augmentation} \label{sec:dataug}
-As mentioned in the section above, it is rare to find data sets big enough to train the state of the art networks. Some tricks exists to make your data set bigger. It is called data augmentation. The aim is to create more training data from the ones that we already collected. The most common operations are rotations, flips, resizing, rescaling etc... Other techniques that changes the image a bit more can also be used.
+As mentioned in the section above, it is rare to find data sets big enough to train the state of the art networks. Fortunately a collection of methods known as data augmentation can artificially boost the size of small data sets. The aim is to create more training data from the ones that we already collected. The most common operations are rotations, flips, resizing, rescaling etc... Other techniques that changes the image a bit more can also be used.
 \begin{itemize}
     \item Color Jitter: It is a gentle way to change the brightness, contrast, hue and saturation of the image. 
-    For each parameter p, Color Jitter chooses a random value v between 1 - p and 1 + p and then applies the parameter adjustment with this value v. So for example, if we chose to set the brightness parameter to 0.3. The method will chooses a random value between 0.7 and 1.3, let say 1.05 and adjust the brightness with a intensity of 1.05. This is why it is important to keep the values small. Indeed, if we chose 0.8 for brightness for example, we risk to have it adjusted with an intensity of 0.2 which would result in an almost completely black image.
+    For each parameter p, Color Jitter chooses a random value v between 1 - p and 1 + p and then applies the parameter adjustment with this value v. So for example, if we choose to set the brightness parameter to 0.3. The method will chooses a random value between 0.7 and 1.3, let say 1.05 and adjust the brightness with a intensity of 1.05. This is why it is important to keep the values small. Indeed, if we choose 0.8 for brightness for example, we risk to have it adjusted with an intensity of 0.2 which would result in an almost completely black image.
      \item Elastic Transform:   Elastic transformation relies on the fact  that images have some invariance to elastic deformation. Elastic deformation describes the temporary deformation of a material that will later regain its original form. Instead of moving the whole image as in affine transformation, we move each pixel to a new position dependent of the previous one \cite{elastic}. This can be seen as a grid underlying the image. Each point of the grid will be slightly moved, resulting in a distorted image. 
      \end{itemize}

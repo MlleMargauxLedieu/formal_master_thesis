@@ -2,33 +2,39 @@
 \section{Hyper parameters influence}
 \subsection{Initialization}
 
-For every network and every class, we tried two different initialization strategies. For the first two networks: AlexNet and Resnet18, the pretrained weights achieved better results. For the Inception\_v3, it is the opposite, the random initialization performs better. 
-We can also note that when training Resnet and AlexNet, we could use up to 700 samples per batch to run two experience in parallel. While for Inception\_v3, we could only have a batch size of 50 to run the experiments. This is likely because the Inception\_v3  network is deeper so it takes more memory to train.
+For every network and every class, we tried two different initialization strategies. For the first two networks: AlexNet and ResNet-18, the pretrained weights achieved better results. For the Inception\_v3, it is the opposite, the random initialization performed better. 
+
+We can also note that when training ResNet-18 and AlexNet, we could use up to 700 samples per batch to run two experience in parallel. While for Inception\_v3, we could only have a batch size of 50 to run the experiments. This is likely because the Inception\_v3  network is deeper so it takes more memory to train.
 
 
 \subsubsection{Porosity}
-For AlexNet and ResNet18, the porosity class performs particularly poorly with random initialization. It starts with around the same accuracy as pretrained, but then it decreases over the epochs. We have only four possible labels in this class .After the first iteration, the random initialization only predicts 0 as label. 
-For example when the validation set has labels as follows : 1086 samples have no\_vp, 234 have vp\_minor, 255 have vp\_intermediate and 104 have vp\_abundant. We have a total of 1679 samples in our validation set. If the network predicts only 0 after the first epoch, then its accuracy will be \(1086/1679 = 0,65\) 65\%. That is why we have to look into the actual value that the network is predicting.  High accuracy on the test set does no necessarily means that the model is actually performing well. That is why we use confusion matrix to see how the labels are predicted.
+For AlexNet and ResNet-18, the porosity class performs particularly poorly with random initialization. It starts with around the same accuracy as pretrained, but then it decreases over the epochs. 
 
-If we look into the details of the plots, we can see that almost all training starts with an accuracy around 65\%. Then as the network learns, it will start predicting other labels and that can reduce its performances. This is what happens for the random initialization for AlexNet and ResNet18. The final accuracy is not as good as the initial one. We can conclude that the network does not learn when it uses random initialization for the porosity labels.
+We have only four possible labels in this class. We observed that after the first iteration with random initialization, the network only predicts 0 as label. The 0 label corresponds to no\_vp.
+W also observed that the validation set has labels as follows : 1086 samples have no\_vp, 234 have vp\_minor, 255 have vp\_intermediate and 104 have vp\_abundant. We have a total of 1679 samples in our validation set. If the network predicts only no\_vp after the first epoch, then its accuracy will be \(1086/1679 * 100 = 65\%\). 
 
-For the Inception\_v3 network, both initial accuracy are around 65\% again. During the training with pretrained weights we have a constant small increase. At then end of the training with pretrained weights we have a 8\% improvement in accuracy. While with random initialization, the increase is more fluctuating and bigger. After training, the network has improved its accuracy by 30\%, at best.
+High accuracy on the test set does no necessarily means that the model is actually performing well. That is why we have to look into the labels that the network predicts. Hence the use of confusion matrix. 
+
+If we look into the details of the plots, we can see that almost all training begin with an accuracy around 65\%. Then, as the network learns, it starts predicting other labels and that can reduce its performances. This is what happened for the random initialization of AlexNet and ResNet-18. The final accuracy is not as good as the initial one. We can conclude that the network did not learn when it used random initialization for the porosity labels.
+
+For the Inception\_v3 network, both initial accuracy are around 65\% again. During the training with pretrained weights we have a constant small increase. At then end of the training with pretrained weights we observe a 8\% improvement in accuracy. While with random initialization, the increase is more fluctuating and bigger. After training, the network has improved its accuracy by 30\%, at best.
 
 \subsubsection{Dunham, Components and DRT}
-All three classes behave similarly on the different networks. Once again, for AlexNet and ResNet18, pretrained weights achieve a more stable and better learning. We have more labels in those classes, respectively 6, 13 and 19 for Dunham, Components and DRT. 
+All three classes behave similarly on the different networks. Once again, for AlexNet and ResNet-18, pretrained weights achieved a more stable and better learning. 
+
 For Incepetion\_v3, the initial accuracy is better with the pretrained weights. But after a few epochs, the randomly initialized network catches up. In the end, it is random initialization which achieves best results again. We note that there is very high fluctuations. 
 
-The fact that we have such big fluctuations in the training with random initialization is our choice of optimizer. For Inception\_v3, we only train for 30 epochs because the training is very long. So we are in the early phase of training, meaning we have a big learning rate. Also, as Inception\_v3 is a bigger network, we see  that the small amount of data is not enough to make it converge. The solution would be to try for more epochs to see how it stabilizes near the end of the training. 
+The fact that we have such big fluctuations in the training with random initialization is due to the size of our dataset. Also, as Inception\_v3 is a bigger network, we see  that the small amount of data is not enough to make it converge. The solution would be to try for more epochs to see how it stabilizes near the end of the training. 
 
 \subsubsection{Conclusion for first experiment}
-From this experiment, we can conclude that for AlexNet and ResNet18, the pretrained weights is the best initialization. For Inception\_v3, random initialization achieves best results. We present the best results achieved by each network on each class in Table \ref{tab:finalinit}
+From this experiment, we can conclude that for AlexNet and ResNet-18, the pretrained weights was the best initialization. For Inception\_v3, random initialization achieved best results. We present the best results achieved by each network on each class in Table \ref{tab:finalinit}
 \begin{table}
-\caption{\label{tab:finalinit} The results of training Inception network using random initialization or pretrained weights with Adamax as optimizer}
+\caption[Best results for each network]{\label{tab:finalinit} The results of training every network using random initialization or pretrained weights, with Adamax as optimizer}
 \centering
 \begin{tabular}[b]{| l |  l | l | l |}
 \hline
     Class & Initialization & Validation score  & Test score\\ \hline
-    \multirow{4}{*}{Resnet 18} & Dunham &  61,9\%  & 37,3\% \\ 
+    \multirow{4}{*}{ResNet-18} & Dunham &  61,9\%  & 37,3\% \\ 
     & Porosity & 74,1\% &  57,8\\
     &DRT & 55,0\% &  25,3\% \\
     &Components & 69,8\% &  44,7\% \\ \hline
@@ -36,7 +42,7 @@ From this experiment, we can conclude that for AlexNet and ResNet18, the pretrai
     & Porosity & 89,2\% &  68,7\% \\
     &DRT & 74,8\% &   23,6\% \\
     &Components & 85,0\% & 50,2\% \\ \hline
-    \multirow{4}{*}{Inception v3} & Dunham &  90,1\% & 69,2\% \\
+    \multirow{4}{*}{Inception v3} & Dunham &  90,1\% & 66,2\% \\
     & Porosity & 97,5\% &  76,1\% \\
     &DRT & 99,2\% &  53,7\% \\
     &Components & 95,6\% & 44,6\% \\ \hline
@@ -49,20 +55,20 @@ Overall, the best results were achieved with Inception\_v3. This is why we chose
 \subsection{Optimizers}
 \subsubsection{Optimization}
 As we mentioned in the previous section, the network that gave the best results is Inception\_v3.
-This is why we optimize further. The optimization we chose to focus on was the use of a different optimizer. We use the same one as the one used in the original paper \cite{googlepaper}: \gls{sgd} + momentum. We then tried to find the best learning rate. For that we tried three different values: 0.1, 0.01 and 0.001.
+This is why we optimize it further by using a different optimizer. We use the same one as the one used in the original paper \cite{googlepaper}: \gls{sgd} + momentum. We then tried to find the best learning rate. For that we tried three different values: 0.1, 0.01 and 0.001.
 
-The results show very similar results to the ones described in Section \ref{sec:grad_lr}. For \(lr=0.1\) we can see convergence, but not towards the best minimum. For \(lr=0.01\), we can see convergence again towards a better minimum. And for \(lr=0.001\),we also have the behavior expected from Figure \ref{fig:LR_impact}. The learning rate is too low, we do not reach convergence after 50 epochs. This is specially visible in the losses curve on Figure \ref{fig:optim_1}. 
+The results show very similar results to the ones described in Section \ref{sec:grad_lr}. For \(lr=0.1\) we can see convergence, but not towards the best minimum. For \(lr=0.01\), we can see convergence again towards a better minimum. And for \(lr=0.001\), we also have the behavior expected from Figure \ref{fig:LR_impact}. The learning rate is too low, we do not reach convergence after 50 epochs. This is especially visible in the losses curve in Figure \ref{fig:optim_1}. 
 
 \subsubsection{Classification}
 We can therefore conclude that the best learning rate that we found was 0.01.
 But the use of this optimizer did not improve the results for all classes. On almost all classes, we found best results with the Adam optimizer. This is a surprising result since most paper suggested that \gls{sgd} will achieve the best results. 
 
 \section{Classification Task}
-\subsection{Resnet18}
-For Resnet18, the best validation accuracy we achieved was 74\% on the porosity class, and 58\% for the test set. The confusion matrix on Figure \ref{fig:rescm_poro_pred} shows that it confuses no\_vp and vp\_minor. But it is good at predicting vp\_abundant. Something that is consistent for all four classes is that Resnet will perform best on the labels that is most populated. That is logical because it is the one that the networks has seen most of so it knows best how to identify it. Resnet18 is over-fitting, the results on the test set are very inferior to the ones on the validation test. A slightly worse results is acceptable, but the ones we get from this network are not acceptable. This can not be used to help geologists since we can not trust the results well enough.
+\subsection{ResNet-18}
+For ResNet-18, the best validation accuracy we achieved was 74\% on the porosity class, and 58\% for the test set. The confusion matrix in Figure \ref{fig:rescm_poro_pred} shows that it confuses no\_vp and vp\_minor. But it is good at predicting vp\_abundant. Something that is consistent for all four classes is that ResNet-18 will perform best on the labels that is most populated. That is logical because it is the one that the networks has seen most of so it knows best how to identify it. ResNet-18 is over-fitting, the results on the test set are very inferior to the ones on the validation test. A slightly worse results is acceptable, but the ones we get from this network are not acceptable. This can not be used to help geologists since we can not trust the results well enough.
 
 \subsection{AlexNet}
-AlexNet outperforms Resnet 18. It gives better results in validation accuracy, but still fails to perform well on new images. Even though we get relatively high values of accuracy on the test set, there is still no clear diagonal on the confusion matrix. For Dunham, the class with the highest missclassification is 13PS-GS. This is a class that mixed both PS and GS. That is why it is difficult to predict clearly. 
+AlexNet outperforms ResNet-18. It gives better results in validation accuracy, but still fails to perform well on new images. Even though we get relatively high values of accuracy on the test set, there is still no clear diagonal on the confusion matrix. For Dunham, the class with the highest missclassification is 13PS-GS. This is a class that mixed both PS and GS. That is why it is difficult to predict clearly. 
 
 \subsection{Inception\_v3}
 The Inception\_v3 network outperforms both networks for the classification task. It has very good results on the validation dataset, and also gives correct results on new images. For porosity, we have a test accuracy up to 76\%, which is high. We can clearly see three squares around the diagonal. There is some misclassification between similar classes, but not with different classes. 
@@ -73,10 +79,12 @@ Finally for components, the validation results are good. But the test results ar
 
 \section{Performance} \label{sec:perf}
 
-As we just mentioned, the best testing accuracy we get is around 76\% for the Porosity classification. This means that when we present a new picture to our model, it has 76\% chances to classify it in the right class. But the right class is subjective. When trying to determine the porosity, different geologists might give different labels. Especially for similar classes. If we refer to Figure \ref{fig:googcmpred_poro}, we can see three darker circle around the diagonal. This means that our model often classify rocks with no porosity with minor porosity or the other way around. But very rarely minor or no porosity as abundant. This is a behavior that we also observe with geologists \cite{thesis_imperial}. In this thesis, a survey has been conducted with experienced geologists. They were asked to classify rocks with three to four possible answers. Two of them were close while the other one was very far in the confusion matrix. Results show that geologists often mistook the two close ones but rarely the third further one. 
+As we just mentioned, the best testing accuracy we get is around 76\% for the Porosity classification. This means that when we present a new picture to our model, it has 76\% chances to classify it in the right class. But the right class is subjective. When trying to determine the porosity, different geologists might give different labels. Especially for similar classes. If we refer to Figure \ref{fig:gocm_poro_pred}, we can see three darker circle around the diagonal. This means that our model often classifies rocks with no porosity with minor porosity or the other way around. But very rarely minor or no porosity as abundant.
+
+This is a behavior that we also observe with geologists \cite{thesis_imperial}. In this thesis, a survey has been conducted with experienced geologists. They were asked to classify rocks with three to four possible answers. Two of them were close while the other one was very far in the confusion matrix. Results show that geologists often mistook the two close ones but rarely the third further one. 
 They might disagree on differentiating between rocks with no or minor porosity. But they would not label a rock with minor porosity as abundant. 
 
 It is difficult to measure the agreement among geologists. As in any other fields, there are different schools of thoughts. Especially in carbonate rocks since many components look the same. But also, the way the labels are given to images is not systematic. Some geologists might spend a lot of time identifying each fragment while others just classify the most obvious one and put the rest under undifferentiated fragment. That is why the more possible labels we have in one class, the more difficult it is to have an objective description. Some pictures have around seven different components labeled. So it is seven possible sources of disagreement among geologists. This is why a high result on accuracy for DRT and components has more value than a high score on porosity. 
 
 
-Reflecting on the thesis' title: 'Predicting reservoir rock quality from thin sections of core using \gls{cnn}s'.We believe that good results on porosity and DRT are the two most important ones. DRT is a more detailed description of the rock than Dunham because it includes some of the major components. So if we have good prediction on DRT and porosity, geologists will have a good idea of how much oil they might find and extract. Having the Dunham classification helps having an overview of the rocks along the core. It is also a classification that is used by geologists over the world. Finally, the components help describing a more precise picture of the geological environment. Knowing the environment for a rock will help for further exploration. The core we extract is just a tiny portion of the oil field. So if we are able to paint a detailed picture of this core, we get some insight on the rest of the field. 
+Reflecting on the thesis' title: "Predicting reservoir rock quality from thin sections of core using \gls{cnn}".We believe that good results on porosity and DRT are the two most important ones. DRT is a more detailed description of the rock than Dunham because it includes some of the major components. So if we have good prediction on DRT and porosity, geologists will have a good idea of how much oil they might find and extract. Having the Dunham classification helps having an overview of the rocks along the core. It is also a classification that is used by geologists over the world. Finally, the components help describing a more precise picture of the geological environment. Knowing the environment for a rock will help for further exploration. The core we extract is just a tiny portion of the oil field. So if we are able to paint a detailed picture of this core, we get some insight on the rest of the field. 

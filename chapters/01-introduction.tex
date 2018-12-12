@@ -4,10 +4,10 @@ In this chapter we explain the motivation for this thesis and state our goals an
 \section{Motivation}
 In spite of the shift towards renewable energies, the search for oil and gas remains as strong as ever. To remain competitive with the low oil price, operators need to find new ways to optimize their services. 
 With increasing amount of data,  more and more companies are embracing Machine Learning for their day to day operations. And the results are encouraging. 
-From drilling to stock prices, the industry research  new tools to help automate some of the processes. 
-Still, geologists and other experts remain reluctant to trust these "black box algorithms". This is why we need to thrive to achieve better results and convince them that Machine Learning can assist them in their daily work.
+From drilling to stock prices, the industry researches new tools to help automate some of the processes. 
+Still, geologists and other experts remain reluctant to trust these "black box algorithms". This is why we need to strive to achieve better results and convince them that Machine Learning can assist them in their daily work.
 
-Last year, several newspapers argued whether "data [was] now more valuable than oil" \cite{economist,forbes}. Even though opinion differ, there is a consensus that data drive innovation and scientific progress. This highlights the need for the oil industry to become more digital and find ways to draw value from this data. A good example of how data can help is carbonate rocks classification \cite{carbo}. Dozens of different data sources are exploited such as seismic data, data from various tools and sensors while drilling, pictures of rocks, etc. If  we could analyze all these data better, we would be able to recover more oil from the fields we are already exploiting, and discover even bigger ones. The use of deep learning in petroleum studies is still shy, but the possibilities are countless.
+Last year, several newspapers argued whether "data [was] now more valuable than oil" \cite{economist,forbes}. Even though opinion differ, there is a consensus that data drive innovation and scientific progress. This highlights the need for the oil industry to become more digital and find ways to draw value from this data. A good example of how data can help is carbonate rocks classification \cite{carbo}. Dozens of different data sources are exploited such as seismic data, data from various tools and sensors while drilling, pictures of rocks, etc. If  we could analyze all these data better, we would be able to recover more oil from the fields we are already exploiting, and discover even bigger ones. The use of deep learning in petroleum studies is still emerging, but the possibilities are countless.
 
 
 The goal of this thesis is to produce an image recognition algorithm that is able to differentiate between different levels of porosity,  Dunham classification, components and depositional rock types using picture of thin sections of core rocks. The purpose is to help geologists labeling carbonate rocks since it can be a time consuming, laborious and rather expensive task. 
@@ -19,26 +19,27 @@ To reach this goal, we define several specific research questions:
 \begin{itemize}
     \item Are Convolutional Neural Networks able to accurately classify the images according to the different classes ?
     \item Which network performs best ?
-    \item How does initialization and research parameters influence the performance of the network ?
+    \item How does initialization and hyperparameters influence the performance of the network ?
 \end{itemize}
 
 \section{Disclaimer}
 This thesis has been conducted in collaboration with a company. The input data itself is confidential. This is why it has been anonymized. We refer to the different components with letters and depositional rock types with codes. Apart from that, the results are fully published here.  
 
 \section{Research Methods}\label{sec:research-method}
-To reach the goal and address the research questions, we divide our research into two parts. First, we conduct a literary review to understand the labels we are trying to identify and the theory behind \gls{cnn} and their different optimization. In the second part we will test different networks and optimization techniques. Methodology will be discussed further in Chapter \ref{chp:methodology}.
+To reach the goal and address the research questions, we divide our research into two parts. First, we conduct a literature review to understand the labels we are trying to identify and the theory behind \gls{cnn} and their different optimization. In the second part we will test different networks and optimization techniques. Methodology will be discussed further in Chapter \ref{chp:methodology}.
+
 \section{Thesis Outline}
 
 In Chapter \ref{chp:introduction}, we introduced the motivations for this thesis. It contains arguments for how an image classification algorithm could facilitate the job of geologist and allow them to focus on tasks that need more expertise. Further the aim of the thesis and the related research questions were presented. 
 
 
-The second Chapter \ref{chp:background}, contains the theory needed to understand the data given and how the labels are associated to the quality of the reservoir rocks, and the theory needed to build an image recognition algorithm based on gls{cnn}. More specifically, it introduces the different layers and operations that they consist of, as well as optimization processes. Lastly, the architecture and theory behind the state of the art network and the different techniques used to train them are explained.
+The second Chapter \ref{chp:background}, contains the theory needed to understand the data given and how the labels are associated to the quality of the reservoir rocks, and the theory needed to build an image recognition algorithm based on \gls{cnn}. More specifically, it introduces the different layers and operations that they consist of, as well as optimization processes. Lastly, the architecture and theory behind the state of the art network and the different techniques used to train them are explained.
  
 
-In Chapter \ref{chp:methodology}, we introduce the methods used in the image classification algorithm. In the first part, we discuss the label selection and the preprocessing, then we describes the data augmentation techniques. In a third section, we look into details into the architecture of each network and Lastly we present the different experiments that were conducted.  
+In Chapter \ref{chp:methodology}, we introduce the methods used in the image classification algorithm. In the first part, we discuss the label selection and the preprocessing, then we describes the data augmentation techniques. In a third section, we look into details into the architecture of each network and lastly we present the different experiments that were conducted.  
 
 
-Chapter  \ref{chp:results} simply present the results of each experiment for each labels using tables, plots and confusion matrices.
+Chapter \ref{chp:results} simply presents the results of each experiment for each labels using tables, plots and confusion matrices.
 
 
 In Chapter \ref{chp:discussion}, we discuss the results and the eventual limitations that we have identified.

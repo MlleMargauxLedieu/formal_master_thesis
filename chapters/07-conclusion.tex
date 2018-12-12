@@ -3,15 +3,15 @@ In our study, we set out to answer three research questions:
 \begin{itemize}
     \item Are convolutional neural networks able to accurately classify the images according to the different classes ?
     \item Which network performs best ?
-    \item How does initialization and research parameters influence the performance of the network ?
+    \item How does initialization and hyperparameters influence the performance of the network ?
 \end{itemize}
 
 
-The results of this study is that we can predict on the porosity class with xx\% accuracy, the Dunham class with XX\%, DRT with XX\% and the components with a F1-sore of xx\%. As we explained in section \ref{sec:perf}, there is some subjectivity in the labeling task. Taking this into account, those results are highly satisfying. We confirm that we can use \gls{cnn} can be used for our classification task.
+The results of this study is that we can predict on the porosity class with xx\% accuracy, the Dunham class with XX\%, DRT with XX\% and the components with a F1-sore of xx\%. As we explained in section \ref{sec:perf}, there is some subjectivity in the labeling task. Taking this into account, those results are highly satisfying. We confirm that a \gls{cnn} can be used for our classification task.
 
-For the second question, we found that Inception\_v3 was the best performing network. This is surprising since ResNet is the best state of the art network today. 
+For the second question, we found that Inception\_v3 was the best performing network. This is surprising since ResNet has the highest ImageNet score of the three networks tested.
 
-We also found  that depending on the network, the initialization strategy  lead to different results. For ResNet and AlexNet, the pretrained weights helped achieve better and quicker results. Whereas Inception\_v3 performed best with random initialization. Also, we used a different optimizer with different learning rates to see how good results Inception\_v3 could give. The use of Stochastic Gradient Descent with xxx as a learning rate gave us the best results.
+We also found  that depending on the network, the initialization strategy  lead to different results. For ResNet-18 and AlexNet, the pretrained weights helped achieve better and quicker results. Whereas Inception\_v3 performed best with random initialization. Also, we used a different optimizer with different learning rates to see how good results Inception\_v3 could give. The use of Stochastic Gradient Descent with xxx as a learning rate gave us the best results.
 
 The aim of this project was to build a classification algorithm that could be used by geologists to help them in their day to day labeling work. We can say that we achieved our goal since we have a robust and accurate network, able to classify the different classes. We should of course keep in mind that the aim is not to replace the geologist on site. We provide them with first assumption that they can chose to confirm or challenge. 
 

@@ -30,6 +30,7 @@
 } 
 \newacronym{sgd}{SGD}{Stochastic Gradient Descent}
 \newacronym{cnn}{CNN}{Convolutional Neural Network}
+\newacronym{drt}{DRT}{Depositional Rock Types}
  
  
 
@@ -52,9 +53,35 @@
 \titlepage
 
 \begin{abstract}
-  English abstract goes here.
-
-  \blindtext
+In the past few years, the use of machine learning in petroleum studies has risen. Especially for seismic interpretation and signal processing. But the use remains shy in carbonates classification and image analysis. This study aims at applying Deep Learning on reservoir rock images to produce an image classification algorithm. The images used are thin section of core rocks gathered while drilling exploration wells. The purpose is to classify thin sections according to their level of porosity, the Dunham and \gls{drt} classifications, and to be able to identify the different components they contain and. 
+This study aims to classify carbonate facies according to the Dunham
+classification scheme in high-resolution core images using machine learning techniques. The study
+evaluates two commonly used machine learning algorithms, Random Forest (RF) and Convolutional
+Neural Networks (CNNs), to identify facies in high-resolution carbonate core images through a number
+of methods. CNNs were ascertained as the superior algorithm, achieving 89.2% accuracy for
+identification of Mudstone to Rudstone and Crystalline Dolomite and producing results which were
+sensible from a geological point of view. The main misclassification was between matrix and grain
+supported facies, and fine and coarse grained facies, adjacent in the Dunham scheme. A survey of
+the algorithm’s commonly misclassified images was conducted with geologists who had carbonate
+classification experience. Experienced geologists attained an accuracy almost 20% greater than the
+algorithm, with the same misclassification bias observed in both the geologists and the algorithm. A
+Turing Test was carried out to verify whether the algorithm could pass for a geologist and the algorithm
+went on to pass the test. The results of this study show great potential for the use of machine
+learning in carbonate core classification in a fast and high-resolution manner, with a level of accuracy
+approaching experienced geologists.
+ The purpose is
+to design an image recognition algorithm that is able to differentiate between tumors
+and normal tissue in lungs. The algorithm is based on artificial neural networks and
+therefore the ability of a convolutional neural network (CNN) to predict a tumor is
+studied. Two different architectures are designed in this thesis, which are a three and
+six layer CNN. In addition, different hyper-parameters and optimizers are compared in
+order to find suitable settings.
+This thesis concludes that no significant difference exists between the results of the
+two architectures. The architecture with three layers is faster to train and therefore
+100 trainings with same settings are completed with this architecture in order
+to get statistics of the trainings. The mean accuracy for the test set is 91.1% and the
+standard-deviation for the test set is 2.39%. The mean sensitivity is 89.7% and the
+mean specificity is 92.4%.
 \end{abstract}
 
 
