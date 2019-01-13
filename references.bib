@@ -107,7 +107,9 @@ abstract = "The most widely used classifications of limestones are now thirty ye
 @Misc{lr,
   author = "{Hafidz Zulkfli}", 
   title = "{Understanding Learning Rates and How It Improves Performance in Deep Learning}",
-  howpublished = "URL: {\url{https://towardsdatascience.com/understanding-learning-rates-and-how-it-improves-performance-in-deep-learning-d0d4059c1c10}}",
+  howpublished = "URL: {\url{https:// 
+  \\
+  towardsdatascience.com/understanding-learning-rates-and-how-it-improves-performance-in-deep-learning-d0d4059c1c10}}",
   note = "Accessed: 25.09.2018"
 }
 %5 Adam and Adamax optimizers
@@ -181,7 +183,13 @@ archivePrefix = "arXiv",
   howpublished = "URL: {\url{https://towardsdatascience.com/understanding-confusion-matrix-a9ad42dcfd62}}",
   note = "Accessed: 10.10.2018"
 }
-
+%6+ data augmentation gone wrong
+@Misc{badaug_im,
+  author = "{Radek Zaworski}", 
+  title = "{Data augmentation techniques and pitfalls for small datasets }",
+  howpublished = "URL: {\url{https://snow.dog/blog/data-augmentation-for-small-datasets}}",
+  note = "Accessed: 03.01.2018"
+}
 %7 Elastic search 
 @proceedings{elastic,
 editor = {Simard, Patrice Y. and Steinkraus, Dave and Platt, John},
@@ -285,6 +293,77 @@ url = {https://www.microsoft.com/en-us/research/publication/best-practices-for-c
   biburl    = {https://dblp.org/rec/bib/journals/corr/YosinskiCBL14},
   bibsource = {dblp computer science bibliography, https://dblp.org}
 }
+
+% DL for predicting lithology based on seismic data
+
+@article{dlseismiclitho,
+author = {Zhang, Guoyin and Wang, Zhizhang and Chen, Yangkang},
+title = {Deep learning for seismic lithology prediction},
+journal = {Geophysical Journal International},
+volume = {215},
+number = {2},
+pages = {1368-1387},
+year = {2018},
+doi = {10.1093/gji/ggy344},
+URL = {http://dx.doi.org/10.1093/gji/ggy344},
+eprint = {/oup/backfile/content_public/journal/gji/215/2/10.1093_gji_ggy344/1/ggy344.pdf}
+}
+
+% DL for predicting geological features based on seismic data
+@article{dlseismicfeatures,
+author = { Lei Huang  and  Xishuang Dong  and  T. Edward Clee },
+title = {A scalable deep learning platform for identifying geologic features from seismic attributes},
+journal = {The Leading Edge},
+volume = {36},
+number = {3},
+pages = {249-256},
+year = {2017},
+doi = {10.1190/tle36030249.1},
+URL = {https://doi.org/10.1190/tle36030249.1},
+eprint = {https://doi.org/10.1190/tle36030249.1}
+}
+% DL for predicting porosity based on wireline log data
+@ARTICLE{dlwirelineporo, 
+author={P. M. Wong and T. D. Gedeon and I. J. Taggart}, 
+journal={IEEE Transactions on Geoscience and Remote Sensing}, 
+title={An improved technique in porosity prediction: a neural network approach}, 
+year={1995}, 
+volume={33}, 
+number={4}, 
+pages={971-980}, 
+keywords={petroleum industry;geophysical prospecting;geophysical techniques;geophysics computing;geophysical signal processing;feedforward neural nets;backpropagation;porosity;genetic algorithms;geophysical measurement technique;geology;petroleum;prospecting;oil reservoir;geophysics computing;well logging;feedforward neural net;neural network;porosity prediction;genetic reservoir characterization;fluid flow properties;hydrocarbon reserve;classification;well log data;lithofacies group;facies-by-facies description;permeability;genetic algorithm;oil well u;backpropagation;weight visualization curv;Intelligent networks;Neural networks;Genetics;Petroleum;Permeability;Australia;Geology;Hydrocarbon reservoirs;Fluid flow;Backpropagation}, 
+doi={10.1109/36.406683}, 
+ISSN={0196-2892}, 
+month={July},}
+
+% DL for predicting facies based on wireline log data
+@article{dlwirelinefacies,
+author = {Maiti, Saumen and Krishna Tiwari, Ram and Kümpel, Hans-Joachim},
+title = {Neural network modelling and classification of lithofacies using well log data: A case study from KTB borehole site},
+journal = {Geophysical Journal International},
+volume = {169},
+number = {2},
+pages = {733-746},
+year = {2007},
+doi = {10.1111/j.1365-246X.2007.03342.x},
+URL = {http://dx.doi.org/10.1111/j.1365-246X.2007.03342.x},
+eprint = {/oup/backfile/content_public/journal/gji/169/2/10.1111/j.1365-246x.2007.03342.x/2/169-2-733.pdf}
+}
+% DL for predicting dunham based on thin section
+@article{dltexture,
+title = "Textural identification of carbonate rocks by image processing and neural network: Methodology proposal and examples",
+journal = "Computers and Geosciences",
+volume = "31",
+number = "5",
+pages = "649 - 659",
+year = "2005",
+issn = "0098-3004",
+doi = "https://doi.org/10.1016/j.cageo.2004.11.016",
+url = "http://www.sciencedirect.com/science/article/pii/S0098300404002493",
+author = "Roberto Marmo and Sabrina Amodio and Roberto Tagliaferri and Vittoria Ferreri and Giuseppe Longo",
+keywords = "Carbonate rocks, Thin sections, Dunham classification, Multi-layer perceptron, Image analysis",
+}
+
 %11tris Thin section
 @Misc{section,
   author = "{SEPM STRATA}", 

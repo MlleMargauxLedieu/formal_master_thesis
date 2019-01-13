@@ -12,30 +12,39 @@
 \usepackage{multirow}
 \usepackage{lipsum}
 \usepackage[acronym]{glossaries}
-
+\usepackage{titling}
+\setcounter{biburllcpenalty}{7000}
+\setcounter{biburlucpenalty}{8000}
 \addbibresource{references.bib} % The file containing our references, in BibTeX format
 
-\makeglossaries
+\makenoidxglossaries
  
  
-\newglossaryentry{maths}
+\newglossaryentry{epochs}
 {
     name=epoch,
-    description={An epoch is completed when the model has seen all the data samples once.}
+    description={An epoch is completed when the model has seen all the samples once}
 } 
 \newglossaryentry{over-fitting}
 {
     name=over-fitting,
-    description={A network is over-fitting when it becomes too specific to the training samples. It does not generalize well on new data.}
+    description={A network is over-fitting when it becomes too specific to the training samples. If a network over-fits does not generalize well on new data}
 } 
 \newacronym{sgd}{SGD}{Stochastic Gradient Descent}
 \newacronym{cnn}{CNN}{Convolutional Neural Network}
 \newacronym{drt}{DRT}{Depositional Rock Types}
- 
- 
+\newacronym{ps}{PS}{Packstone}
+\newacronym{ms}{MS}{Mudstone}
+\newacronym{gs}{GS}{Grainstone} 
+\newacronym{psgs}{PS-GS}{Packstone - Grainstone}
+\newacronym{ws}{WS}{Wackstone} 
+\newacronym{svm}{SVM}{Support Vector Machines} 
+\newacronym{rf}{RF}{Random Forest} 
+\glsadd{sgd}\glsadd{cnn}\glsadd{drt}\glsadd{ws}\glsadd{gs}\glsadd{ps}\glsadd{psgs}
 
-\title{Predicting reservoir rock quality from thin sections of core using Convolutional Neural Network}
-\alttitle{Detta är den svenska översättningen av titeln}
+
+\title{Classifying reservoir rock quality from thin sections of core using Convolutional Neural Networks}
+\alttitle{Klassificera reservoarrockkvalitet utifrån tunna kärnstensektioner med hjälp av Convolutional Neural Networks}
 \author{Margaux Ledieu}
 \email{lmledieu@kth.se}
 \supervisor{Haibo Li}
@@ -53,66 +62,46 @@
 \titlepage
 
 \begin{abstract}
-In the past few years, the use of machine learning in petroleum studies has risen. Especially for seismic interpretation and signal processing. But the use remains shy in carbonates classification and image analysis. This study aims at applying Deep Learning on reservoir rock images to produce an image classification algorithm. The images used are thin section of core rocks gathered while drilling exploration wells. The purpose is to classify thin sections according to their level of porosity, the Dunham and \gls{drt} classifications, and to be able to identify the different components they contain and. 
-This study aims to classify carbonate facies according to the Dunham
-classification scheme in high-resolution core images using machine learning techniques. The study
-evaluates two commonly used machine learning algorithms, Random Forest (RF) and Convolutional
-Neural Networks (CNNs), to identify facies in high-resolution carbonate core images through a number
-of methods. CNNs were ascertained as the superior algorithm, achieving 89.2% accuracy for
-identification of Mudstone to Rudstone and Crystalline Dolomite and producing results which were
-sensible from a geological point of view. The main misclassification was between matrix and grain
-supported facies, and fine and coarse grained facies, adjacent in the Dunham scheme. A survey of
-the algorithm’s commonly misclassified images was conducted with geologists who had carbonate
-classification experience. Experienced geologists attained an accuracy almost 20% greater than the
-algorithm, with the same misclassification bias observed in both the geologists and the algorithm. A
-Turing Test was carried out to verify whether the algorithm could pass for a geologist and the algorithm
-went on to pass the test. The results of this study show great potential for the use of machine
-learning in carbonate core classification in a fast and high-resolution manner, with a level of accuracy
-approaching experienced geologists.
- The purpose is
-to design an image recognition algorithm that is able to differentiate between tumors
-and normal tissue in lungs. The algorithm is based on artificial neural networks and
-therefore the ability of a convolutional neural network (CNN) to predict a tumor is
-studied. Two different architectures are designed in this thesis, which are a three and
-six layer CNN. In addition, different hyper-parameters and optimizers are compared in
-order to find suitable settings.
-This thesis concludes that no significant difference exists between the results of the
-two architectures. The architecture with three layers is faster to train and therefore
-100 trainings with same settings are completed with this architecture in order
-to get statistics of the trainings. The mean accuracy for the test set is 91.1% and the
-standard-deviation for the test set is 2.39%. The mean sensitivity is 89.7% and the
-mean specificity is 92.4%.
+In the past few years, the use of Deep Learning in the petroleum industry has increased, especially for seismic interpretation and signal processing. However its use remains shy in image analysis and carbonates classification. This study aims at applying Deep Learning on reservoir rock images and produce an image classification algorithm. The images used are thin sections of core rocks gathered while drilling exploration wells. The purpose is to classify thin sections according to their level of porosity, their Dunham and \gls{drt} classification, and to be able to identify the different components they contain. These predictions will assist geologists in their labeling tasks. 
+
+The algorithm is based on \gls{cnn}. We tested three different \gls{cnn} with different hyperparamters, optimizers as well as initialization strategies. We compared the results in order to find the best setting to achieve the task.
+We found that the best performing network was Inception\_v3 with random initialization. The best optimizer to use depends on the class we predict on. Our best accuracy on the test set is 76,1\% to identify the level of porosity, 68,4\% to classify the images according to their Dunham classification and 53,7\% for the \gls{drt} classification. The network also manages to identify all the components in an image with a F1-score of 50,2\%. 
+The main misclassifications are between rocks that are adjacent in the classification. This means that our algorithm struggles to differentiate similar rocks. When we compare our results to experienced geologists with carbonate classification experience, we observe that they make similar mistakes.
+
+The results of this study show great potential for the use of Deep Learning in classification of core thin sections. 
 \end{abstract}
 
 
 \begin{otherlanguage}{swedish}
   \begin{abstract}
-    Träutensilierna i ett tryckeri äro ingalunda en oviktig faktor,
-    för trevnadens, ordningens och ekonomiens upprätthållande, och
-    dock är det icke sällan som sorgliga erfarenheter göras på grund
-    af det oförstånd med hvilket kaster, formbräden och regaler
-    tillverkas och försäljas Kaster som äro dåligt hopkomna och af
-    otillräckligt.
+\section*{Klassificera reservoarrockkvalitet utifrån tunna kärnstensektioner med hjälp av Convolutional Neural Networks}
+
+Under de senaste åren har användningen av Deep Learning inom petroleumindustrin ökat, speciellt för seismisk tolkning och signalbehandling. Men dess användning förblir minimalt inom bildanalys och karbonaterklassificering. Denna studie syftar på att använda  Deep Learning på reservoarrockbilder och utveckla en bildklassificeringsalgoritm. Bilder av tunna sektioner av kärnstenar som har samlats under borrningsutforskningsbrunnar används. Syftet är att klassificera tunna sektioner i enlighet med deras porositetsnivå, Dunham och \gls{drt} klassificering och identifiera de olika komponenterna de innehåller. 
+Dessa förutsägelser kommer att hjälpa geologer i sina märkningsuppgifter. 
+
+Algoritmen är baserad på \gls{cnn}. Tre olika \gls{cnn}  med olika hyperparametrar, optimerings- och initialiseringsstrategier testades. 
+Resultaten jämfördes för att hitta den bästa inställningen för att uppfylla uppgiften. 
+
+Det bästa nätverket vissade sig att vara Inception\_v3 med slumpmässig initialisering. Bästa optimeringsverktyget varierar beroende på vilken klass vi förutspår. Bästa noggrannhet på testuppsättningen är 76,1\% för identifiering av porositetsnivå, 68,4\% för klassificering av bilderna enligt deras Dunham-klassificering och 53,7\% enligt \gls{drt}-klassidicering. Nätverket kan också identifiera alla komponenter i en bild med ett F1-poäng av 50,2\%. 
+De största felklassificeringarna är mellan stenar som ligger nära varandra i klassificeringen. Algoritmens felklassificeringar liknar dem som görs av erfarna geologer med karbonat klassificeringserfarenhet. 
+Resultaten av denna studie visar stor potential för användningen av Deep Learning i klassificering tunna kärnstensektioner.
+
   \end{abstract}
 \end{otherlanguage}
 
-
-\tableofcontents
+\pagenumbering{roman}                             % small roman letters as page numbers
+\tableofcontents\newpage
+\addcontentsline{toc}{chapter}{List of Figures}
+\listoffigures\newpage
+\addcontentsline{toc}{chapter}{List of Tables}
+\listoftables\newpage
+\addcontentsline{toc}{chapter}{Glossary}
+\printnoidxglossary[type=\acronymtype]\newpage
+\addcontentsline{toc}{chapter}{Acronyms}
+\printnoidxglossary\newpage
 \cleardoublepage
+\pagenumbering{arabic}  
 
-%% include if relevant
-\listoffigures
-\cleardoublepage
-
-%% include if relevant
-\listoftables
-\cleardoublepage
-
-%% include if relevant Byttet fra \printglossary til \printnoidxglossary
-\printglossary[type=\acronymtype]
- 
-\printglossary
-\pagenumbering{arabic}
 
 % Mainmatter is where the actual contents of the thesis goes
 %\mainmatter

@@ -1,25 +1,33 @@
 \chapter{Methodology}\label{chp:methodology}
 In this chapter we explain the research methods used and rationalize their choice. Further, we present the pre processing and label selection, the detailed architecture of the networks and the different experiments that have been conducted. 
+
+\section{Research methods}
+The first part of our research consisted in a literary review. The aim of this review was to gain deeper knowledge on what \gls{cnn} are and how we can use them for image classification. Furthermore, to understand the process of hydrocarbon formation and the strategies used by oil and gas companies to extract it. We also dived into geology to describe some of the characteristics and classification methods used for reservoir rocks.
+
+In the second part, we conduct experiments to evaluate the different networks and optimization techniques. The method that we use is quantitative. We want to determine whether \gls{cnn} are able to classify thin sections of reservoir rocks into the different classes we defined previously. The results of the experiments we conduct will be numbers: either accuracy or F1-score. And we will answer our research question based on those numbers. The choice of method was straightforward in our case since we are doing supervised learning with labeled images. 
+
 \section{Data}
 
-As explained in Section~\ref{sec:coring}, the data has been gathered through coring and labelled by geologists. Further on, we will consider the geologists labels as the ground truth. We have gathered 1907 labeled images. 
+As explained in Section~\ref{sec:coring}, the data has been gathered through coring and labelled by geologists. Further on, we make the decision to consider the geologists labels as the ground truth. We understand the subjectivity and the noise contained in the data set but we have to trust the labels in order to predict on them. We have gathered 1907 labeled images. 
 
 \subsection{Label Selection}
  The labels of every image can be divided into different classes, see Figure~\ref{fig:classes}. For example, the class Lithology contains 10 different labels, each representing one of the possible lithologies. Not all images have labels in every classes, that is why some classes are under-represented. The classes Dominant Grain type, Diagenesis, Cutting description and Sorting have less than 1000 data points. This is not enough to produce good prediction, that is why we chose not to use them.
  
  For the classes that are sufficiently populated, we plot the distribution of the data points within those classes. In Figure~\ref{fig:litandstruct}, we can see the labels distribution for Lithology and Structures. The labels are extremely unbalanced, so trying to predict any other label than Lit1 for Lithology and Structure 1 or 2 for Structures would be very difficult. This is why we will not try to predict on those class. 
- The remaining classes : Porosity, Components, Dunham and DRT, have a good distribution of points within the class. They also give a good overview of the rock properties. If we are able to predict correctly on them, we will have an idea of how good the reservoir rock is. 
+ The remaining classes : Porosity, Components, Dunham and \gls{drt}, have a good distribution of points within the class. They also give a good overview of the rock properties. If we are able to predict correctly on them, we will have an idea of how good the reservoir rock is. 
+
+
 \begin{figure}
 \begin{subfigure}{1\textwidth}
   \centering
-  \includegraphics[width=.8\linewidth]{figures/03-classes.png}
+  \includegraphics[width=.8\linewidth]{figures/03-classes_xl.png}
   \caption{Classes over the samples}
   \label{fig:classes}
 \end{subfigure}%
 \\
 \begin{subfigure}{1\textwidth}
   \centering
-  \includegraphics[width=.8\linewidth]{figures/03-boob.PNG}
+  \includegraphics[width=.8\linewidth]{figures/03-Strucutre_Lithology_xl.PNG}
   \caption{Lithology and Structure over samples}
   \label{fig:litandstruct}
 \end{subfigure}
@@ -28,53 +36,58 @@ As explained in Section~\ref{sec:coring}, the data has been gathered through cor
 
 
 \subsection{Label pre-processing}
-Once we selected the four labels to predict on, we looked into the details of the distribution and adapted it to make it easier to predict on. For the Dunham labels, the first class was under represented, only seven samples. So we decided to simply cut it out. We now have six classes that are almost homogeneously distributed, see Figure~\ref{fig:dunham}. 
+Once we selected the four labels to predict on, we looked into the details of the distribution and adapted it to make it easier to predict on. For the Dunham labels, the first class was under represented, only seven samples. So we decided to simply cut it out. We now have six classes that are almost homogeneously distributed, see Figure~\ref{fig:dunhamlab}. 
 
-For the porosity labels, there are two different levels of description of the porosity. The first level is the amount of porosity: no, minor, intermediate or abundant. The second is the kind of porosity: patchy or micro-porosity. In a first pass, we will only focus on the quantitative aspect: how much porosity do we observe in each sample, see Figure~\ref{fig:porolab}. A further analysis would be to determine what kind of porosity accounts for this total porosity. It might be considered at a later stage. Also, for this first experiment, after we have extracted four labels, we sorted them from no to abundant porosity. 
+For the porosity labels, there are two different levels of description of the porosity. The first level is the amount of porosity: no, minor, intermediate or abundant. The second is the kind of porosity: patchy or micro-porosity. In a first pass, we will only focus on the quantitative aspect: how much porosity do we observe in each sample, see Figure \ref{fig:porolabi}. A further analysis would be to determine what kind of porosity accounts for this total porosity. It might be considered at a later stage. Also, for this first experiment, after we have extracted four labels, we sorted them from no to abundant porosity. 
 
-As shown in Figure~\ref{fig:drtlab} and Figure~\ref{fig:compolab}, the DRT and components class have a lot of different labels: 19 and 13 respectively. Some of them are not populated enough to be considered. Some of the labels we chose to keep are still under-represented but we believe they are populated enough to be predicted.
+As shown in Figure~\ref{fig:drtlab} and Figure~\ref{fig:compolab}, the \gls{drt} and components class have a lot of different labels: 19 and 13 respectively. Some of them are not populated enough to be considered. Some of the labels we chose to keep are still under-represented but we believe they are populated enough to be predicted.
 
-We can divide the classes into two main categories. The DRT and Dunham labels are single-label multi-class labels. It means that each image can only have one label within a class. The Components label are multi-labels multi-class labels, meaning that one image can have one or more label. The porosity has two levels of labels, so we can consider porosity as being both single-label (if we only look at the amount) or multi-label labels. 
+We can divide the classes into two main categories. The \gls{drt} and Dunham labels are single-label multi-class labels. It means that each image can only have one label within a class. The Components label are multi-labels multi-class labels, meaning that one image can have one or more label. The porosity has two levels of labels, so we can consider porosity as being both single-label (if we only look at the amount) or multi-label labels. 
 
 
-As we can see in Figures~\ref{fig:dunhamlab} to ~\ref{fig:compolab}, our labels are not equally distributed. Thus, the network will be biased towards the most populated labels. A way to counter this would be to get more samples of the under represented class. But when one is trying to characterize a certain geographical area, it is normal to find rocks and components that are more present than others. We deal with this issue by calculating the loss with weights. We want to teach our model to give a higher weight to a sample with an under represented label, than one with a more represented label . This way, it should not favor most populated class. 
+As we can see in Figures~\ref{fig:dunhamlab} to ~\ref{fig:compolab}, our labels are not equally distributed. Thus, the network will be biased towards the most populated labels. A way to counter this would be to get more samples of the under represented class. But when one is trying to characterize a certain geographical area, it is normal to find rocks and components that are more present than others. We deal with this issue by calculating the loss with weights. We want to teach our model to give a higher weight to a sample with an under represented label, than one with a more represented label . This way, it should not favor most populated class. We only do that during training so that the network is not biased when looking at new images.  
 
 For single label classification, we calculate the weights of each class as follows: weight of class A is the total number of samples divided by the number of samples in class A.
 
 For multi-label classification, the labels are represented as one-hot encoded vectors as we saw in section~\ref{sec:loss}. We calculate the weights as follows: weight of class A is the number of 0 in class A divided by the number of 1 in class A.
 
 \begin{figure}
-\begin{subfigure}{.6\textwidth}
-  \centering
-  \includegraphics[width=1\linewidth]{figures/03-Dunham.PNG}
-  \caption{Dunham Labels}
-  \label{fig:dunhamlab}
+\makebox[\linewidth][c]{%
+
+\begin{subfigure}[b]{.65\textwidth}
+\centering
+\includegraphics[width=.95\textwidth]{figures/03-porosity_baby_xl.PNG}
+\caption{Porosity Labels}
+\label{fig:porolabi}
 \end{subfigure}%
-\begin{subfigure}{.6\textwidth}
-  \centering
-  \includegraphics[width=1\linewidth]{figures/03-porosity_baby.PNG}
-  \caption{Porosity Labels}
-  \label{fig:porolab}
-\end{subfigure}
-\begin{subfigure}{.6\textwidth}
-  \centering
-  \includegraphics[width=1\linewidth]{figures/03-DRT.PNG}
-  \caption{DRT Labels}
-  \label{fig:drtlab}
+\begin{subfigure}[b]{.65\textwidth}
+\centering
+\includegraphics[width=.95\textwidth]{figures/03-Components_xl.PNG}
+\caption{Components Labels}
+\label{fig:compolab}
 \end{subfigure}%
-\begin{subfigure}{.6\textwidth}
-  \centering
-  \includegraphics[width=1\linewidth]{figures/03-Components.PNG}
-  \caption{Components Labels}
-  \label{fig:compolab}
-\end{subfigure}
+}\\
+\makebox[\linewidth][c]{%
+\begin{subfigure}[b]{.65\textwidth}
+\centering
+\includegraphics[width=.95\textwidth]{figures/03-Dunham_xl.PNG}
+\caption{Dunham Labels}
+\label{fig:dunhamlab}
+\end{subfigure}%
+\begin{subfigure}[b]{.65\textwidth}
+\centering
+\includegraphics[width=.95\textwidth]{figures/03-DRT_xl.PNG}
+\caption{\gls{drt} Labels}
+\label{fig:drtlab}
+\end{subfigure}%
+}
 \caption[Pre processing of labels]{Label distributions before and after pre-processing. Some labels are cut out,  the order can be re-arranged in order to produce more powerful visualization}
 \label{fig:labelsdistrib}
 \end{figure}
 
 \subsection{Data Augmentation}
 %% Editing note: \url{http://www.sepmstrata.org/microscopic_gallery_details.aspx?gid=224&pg=2&gcid=10} is where I took pictures from. 
-The networks used for this thesis are trained on data set of around 10,000,000 images. Our data set has 1907 images, this difference makes it likely that we will not have enough sample for our network to learn properly. A way for us to get more training data is to use data augmentation.  There is a  large number of techniques that can be used. As mentioned in Section \ref{sec:dataug}, the most common are rotations, flips, resizing, rescaling, cropping and adding of noise. But some of them can not be used in our case. 
+When we use transfer learning, the weights we download come from training the network on the ImageNet data set. This data set contains around 10 million images. Our data set has 1907 images, this difference makes it likely that we will not have enough sample for our network to learn properly. A way for us to get more training data is to use data augmentation.  There is a  large number of techniques that can be used. As mentioned in Section \ref{sec:dataug}, the most common are rotations, flips, resizing, rescaling, cropping and adding of noise. But some of them can not be used in our case. 
 
 Cropping is a great way to create multiple images from one image. But there is a risk to crop only an irrelevant zone of the image. When classifying Components for example, in Figure~\ref{fig:crops}, we can see what could go wrong when cropping. Indeed, both images generated from the green and the yellow crops will have the same labels. The organism in the yellow crop is one of the components of the thin section, it will thus be one of the labels of the image. This means that both images will have this component as label, but it is not present in the second image. So we will teach our model the wrong information. A way of dealing with this would be to make big crops, so we keep most of the valuable information in each cropped image.  
 
@@ -159,12 +172,12 @@ The augmentations used in this thesis are :
 \end{figure}
 
     \item Resizing: The pictures were initially 5000x5000 pixels. We resized them to sizes usable by different models (224x224 for ResNet-18, 299x299 for Inception\_v3). This implies a loss in image quality but it drastically increases the speed of computation. See Figure~\ref{fig:resize}
-    \item Elastic Transform : In Figure~\ref{fig:elastics1} and~\ref{fig:elastics2} , we have examples of two different sets of coefficients. The elastic transform on the first images looks more like adding some noise to the picture while the one on the right is extremely distorted. In our case, we can not use the second set of coefficients since we don't want to deform components so much that they are not identifiable any more. 
+    \item Elastic Transform : In Figure~\ref{fig:elastics1} and~\ref{fig:elastics2} , we have examples of two different sets of coefficients. The elastic transform on the first images looks more like adding some noise to the picture while the one on the right is extremely distorted. In our case, we can not use the second set of coefficients since we do not want to deform components so much that they are not identifiable any more. 
 
     \item Median Scale : This scales with the median and the mean of each channel (red, green and blue) of the numpy array. This gives a more clear view of the picture as shown in Figure~\ref{fig:median}  
  \end{itemize}
 
-After Data Augmentation, we have a dataset of 19070 images. 
+After Data Augmentation, we have a dataset of 19070 images. We have augmented our data set ten times.  
 
 
 \section{Experiments}
@@ -173,7 +186,7 @@ We use the Inception\_v3 version of the GoogLeNet. It is the latest version impl
 We repeat 2D convolutions paired with batch normalization with various kernel sizes. Before the final fully connected layer, we also have a pooling layer. The inception module is as described in section \ref{sec:gogl}. We display a part of it to show how the kernel size is changed.  
 \subsection{ResNet}
 %% Editing note : (research paperResNet or imagenet webpage
-ResNet is the network that gives theoretically the best results \cite{resnetpaper}. There are different versions of this network with different depths: ResNet-18, ResNet50, ResNet101 etc... But we must keep in mind that we have a small data set compared to what is usually used for those networks. After data augmentation, we have around 19000 images. It is still far from ImageNet, so we should be careful about over-fitting. We can't use a too deep network on a small amount of data. That is why we chose to only use ResNet-18. The architecture is presented in Figure~\ref{fig:resarchi}
+ResNet is the network that gives theoretically the best results \cite{resnetpaper}. There are different versions of this network with different depths: ResNet-18, ResNet50, ResNet101 etc... But we must keep in mind that we have a small data set compared to what is usually used for those networks. After data augmentation, we have around 19000 images. It is still far from ImageNet, so we should be careful about \gls{over-fitting}. We can not use a too deep network on a small amount of data. That is why we chose to only use ResNet-18. The architecture is presented in Figure~\ref{fig:resarchi}
 
 After a first convolution layer, we use a basic block as shown in Figure~\ref{fig:resarchi} that we repeat until the last layer. In this last layer, out\_features is the number of classes the network should output. 
 \subsection{AlexNet}
@@ -181,24 +194,25 @@ AxelNet is a smaller network, only eight layers deep, so the lack of training da
 \begin{figure}
 \begin{subfigure}{.5\textwidth}
   \centering
-  \includegraphics[width=6cm, height=3cm]{figures/03-Resnet_architecture.png}
+  \includegraphics[width=1\linewidth]{figures/03-Resnet_architecture.png}
   \caption{ResNet-18}
   \label{fig:resarchi}
 \end{subfigure}%
 \begin{subfigure}{.5\textwidth}
   \centering
-  \includegraphics[width=6cm, height=3cm]{figures/03-alexnet_architecture}
-  \caption{AlexNet}
-  \label{fig:alexarchi}
-\end{subfigure}
-\begin{subfigure}{.5\textwidth}
-  \centering
-  \includegraphics[width=6cm, height=3cm]{figures/03-inception_architecture}
+  \includegraphics[width=1\linewidth]{figures/03-inception_architecture}
   \caption{Inception\_v3}
   \label{fig:googarch}
 \end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=1\linewidth]{figures/03-alexnet_architecture}
+  \caption{AlexNet}
+  \label{fig:alexarchi}
+\end{subfigure}
 \caption[Networks architectures]{The architectures of the three networks. AlexNet is a simple eight layers network divided in two parts: feature extraction and classification. ResNet-18 is a deep network with a basic block repeated several times and a single linear layer in the end. Inception\_v3 is a 22 deep \gls{cnn} with repeated Inception blocks.}
 \end{figure}
+
 
 \subsection{Hyper parameters}
 Hyper parameters are the parameters that are chosen before training, and that will remain the same during the whole training. One of the questions in this thesis is to study the influence of some hyper parameters on the  convergence of the algorithm. To do so, we will make some of them may vary from one experiment to an other. 
@@ -206,7 +220,7 @@ Hyper parameters are the parameters that are chosen before training, and that wi
 
 \subsubsection{Weights initialization} \label{sec:init}
 As mention in Section \ref{sec:translearn}, there are two ways of using the networks to perform a classification task. Either you train all the layers in the network and randomly initialize the weights. Or we use the weights that have achieved good results on known data set and retrain only a smaller part of the network to make it specific to the task.
-Choosing between those two tasks depends on the size of the network and the size of the data set. If the network is too deep, training all the layers might lead to over-fitting. But if the data set is very big, then we need to train the whole model to make it recognize forms in our data set. 
+Choosing between those two tasks depends on the size of the network and the size of the data set. If the network is too deep, training all the layers might lead to \gls{over-fitting}. But if the data set is very big, then we need to train the whole model to make it recognize forms in our data set. 
 We will conduct two trainings in parallel for each class. One with random initialization and one with pretrained weights. 
 When conducting those experiments, we use the Adam optimizer since we want to converge quickly to a minimum to compare the two approaches. 
 
@@ -216,7 +230,7 @@ After this first experiment, we will determine which networks performs best. We 
 The batch sized is fixed to 700 so that two experiments can be run in parallel on the same GPU for ResNet-18 and AlexNet. For Inception\_v3, the batch size is set to 50 to be able to run two experiments in parallel. In case we need to run more than two experiments in parallel, we reduce the batch size accordingly.
 
 \subsubsection{Train/Test split}
-In order to monitor the performances of our algorithm, we split the data set in three parts. 80\% of the data is used for training, 10\% is used for validation and 10\% for test. The 10\% used for test are not used at all during the training. It is only used when to do predictions on to see how our network is performing on "new" data. 
+In order to monitor the performance of our networks, we split the data set in three parts. 80\% of the data is used for training, 10\% is used for validation and 10\% for test. The 10\% used for test are not used at all during the training. It is only used when to do predictions on to see how our network is performing on "new" data. 
 
 \subsubsection{Optimizers}
 For Adamax, there is a set of default values for the hyper-parameters: \(\eta = 0.002\), \(\beta_1 = 0.9\) \(\beta_2 = 0.999\), \(\epsilon = 1e-8\) that we will keep across all experiments. We kept those from the default configuration of the optimizer. 
@@ -225,4 +239,4 @@ For the \gls{sgd}, we choose an initial value of learning rate in [0.1, 0.01, 0.
 Adamax is used to get a good convergence quickly, this is why we use Adamax in the first experiment on the weight initialization. This first experiment is going to give us insight on which network performs best on the different labels. Then in a second experiment, we will try to optimize further the best performing model. To reach the best possible results We will use the \gls{sgd}+momentum optimizer. We can then check the influence of the optimizer on our results. 
 
 \subsubsection{Regularization}
-As we mentioned before, the small amount of data we have make over-fitting likely. In order to avoid this problem, we add a layer of dropout with probability 0.5 in AlexNet. ResNet-18 and Inception\_v3 already performs batch normalization between every convolutional. That is an efficient way of doing regularization. This is why we did not add any dropout layer.  
+As we mentioned before, the small amount of data we have make \gls{over-fitting} likely. In order to avoid this problem, we add a layer of dropout with probability 0.5 in AlexNet. ResNet-18 and Inception\_v3 already performs batch normalization between every convolutional. That is an efficient way of doing regularization. This is why we did not add any dropout layer.  

@@ -1,5 +1,7 @@
 \chapter{Conclusion}\label{chp:conclusion}
-In our study, we set out to answer three research questions: 
+In our study, we set out to answer our main research question :  How  efficiently  can  CNN  classify  the  quality  of  reservoir rocks based on pictures of thin sections ?
+
+To help us answer it, we defined three sub-questions:
 \begin{itemize}
     \item Are convolutional neural networks able to accurately classify the images according to the different classes ?
     \item Which network performs best ?
@@ -7,15 +9,18 @@ In our study, we set out to answer three research questions:
 \end{itemize}
 
 
-The results of this study is that we can predict on the porosity class with xx\% accuracy, the Dunham class with XX\%, DRT with XX\% and the components with a F1-sore of xx\%. As we explained in section \ref{sec:perf}, there is some subjectivity in the labeling task. Taking this into account, those results are highly satisfying. We confirm that a \gls{cnn} can be used for our classification task.
+The results of this study is that we can predict on the porosity class with 76,1\% accuracy, the Dunham class with 68,4\%, \gls{drt} with 53,7\% and the components with a F1-sore of 50,2\%. As we explained in section \ref{sec:perf}, there is some subjectivity in the labeling task. Taking this into account, those results are highly satisfying. We confirm that a \gls{cnn} can be used for our classification task.
 
 For the second question, we found that Inception\_v3 was the best performing network. This is surprising since ResNet has the highest ImageNet score of the three networks tested.
 
-We also found  that depending on the network, the initialization strategy  lead to different results. For ResNet-18 and AlexNet, the pretrained weights helped achieve better and quicker results. Whereas Inception\_v3 performed best with random initialization. Also, we used a different optimizer with different learning rates to see how good results Inception\_v3 could give. The use of Stochastic Gradient Descent with xxx as a learning rate gave us the best results.
+We also found  that depending on the network, the initialization strategy  lead to different results. For ResNet-18 and AlexNet, the pretrained weights helped achieve better and quicker results. Whereas Inception\_v3 performed best with random initialization. Also, we used a different optimizer with different learning rates to see how good results Inception\_v3 could give. The use of Stochastic Gradient Descent with 0.01 as a learning rate only gave better results on the Dunham class. For the other classes, it did not improve the results further.
 
-The aim of this project was to build a classification algorithm that could be used by geologists to help them in their day to day labeling work. We can say that we achieved our goal since we have a robust and accurate network, able to classify the different classes. We should of course keep in mind that the aim is not to replace the geologist on site. We provide them with first assumption that they can chose to confirm or challenge. 
+The aim of this thesis was to build a classification algorithm that could be used by geologists to help them in their day to day labeling work. Our goal was achieved since we have a robust and accurate network, able to classify the different classes. This will greatly reduce the time spent describing thin sections. The classification by the network takes less than a second per image while manual description by geologists can take up to an hour depending on the level of details. We should of course keep in mind that the aim is not to replace the geologist on site. The network provides them with first assumption that they can chose to confirm or challenge. 
 
-We identified that our main limitation was the amount of training data. Even though we achieved good results, those networks thrive when given large amounts of data. Nevertheless, our project gives a good proof of concept. The second limitation is the 'black box' nature of this algorithm. The lack of understanding of the representations learned by the networks makes it hard for geologists to trust it.
-To take this project further, we would need more data to train our model on. Also, a good way to measure the performance of our algorithm would be to take it through a Turing test. Also, a study to evaluate geologists accuracy in classifying core thin sections would help us understand better where the difficulty lies. And improve  our model consequently. It would objectively say which one of the algorithm or the geologists are more consistent in the labeling task. 
+
+We identified that our main limitation was the amount of training data. Even though we achieved good results with our small dataset, those networks perform best when given large amounts of data. The second limitation is the "black box" nature of this algorithm. The lack of understanding of the representations learned by the networks makes it hard for geologists to trust it. Educating geologists on deep learning concepts and on the possible outcomes could help them understand how they can use it in their work. However, we do not except a blind trust in our classification. But we hope that the fact that they can choose to use it as an assistance will help build this trust progressively. 
+
+
+To take this project further, we would need more data to train our model on. Also, a good way to measure the performance of our algorithm would be to take it through a Turing test. A study to evaluate geologists accuracy in classifying core thin sections would help us understand better where the difficulty lies and consequently improve our model. It would objectively say whether the algorithm or the geologists are more consistent in the labeling task. 
 
 Once this algorithm is used by geologists, the feedback that we will receive will improve the quality of our prediction. In a few years, the geologists might only have a checking task when labeling core samples. Lastly, image classification tasks are very popular in the field at the moment. This means that every year, a new better performing network will be published. Keeping up to date and trying new solutions will ensure always achieving the best results. 

@@ -87,9 +87,11 @@
 
 % Set up the header and footer
 \fancyhead{}
-\fancyhead[RO]{\sffamily\small\leftmark\qquad\thepage}
-\fancyhead[LE]{\sffamily\small\thepage\qquad\leftmark}
-\fancyfoot{}
+\fancyhead[RO]{\sffamily\small\leftmark\qquad}
+\fancyhead[LE]{\sffamily\small\qquad\leftmark}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
 \renewcommand{\headrulewidth}{0pt}
 \pagestyle{fancy}
 
